@@ -1,0 +1,27 @@
+error:
+  console-access-blocked: '&cSorry, but this command is not available via console.'
+  already-teleporting: '&cYou are already in the teleportation queue!'
+  hub-not-set: '&cThe hub is not set.'
+  spawn-not-set: '&cThe spawn is not set.'
+  unknown-world: '&cError: world "%w%" does not exist!'
+  wrong-usage: '&cWrong usage! Correct usage is %usage%'
+  no-permission: '&cYou do not have permission: &4%permission%'
+  player-offline: '&cPlayer %player% is offline!'
+warning:
+  console-access: '&eWarning! You are accessing the plugin command from console.'
+  teleportation-cancelled: '&cYou moved! Teleportation cancelled.'
+info:
+  global:
+    teleport-delay: '&eYou will be teleported in %delay% seconds!'
+    prefix: '&0[&3HT&0] &f'
+  hub:
+    teleported: '&eYou have been teleported to the hub!'
+    teleported-other: '&eYou teleported &3%player%&e to the hub!'
+    set: '&eYou have successfully set the hub! World: &3%w%&e X: &3%x%&e Y: &3%y%&e Z: &3%z%'
+  spawn:
+    teleported: '&eYou have been teleported to the spawn!'
+    teleported-other: '&eYou teleported &3%player%&e to world &3%world%&e''s spawn!'
+    set: '&eYou have successfully set the spawn for world &3%dw%&e in world: &3%cw%&e X: &3%x%&e Y: &3%y%&e Z: &3%z%'
+  worldtp:
+    teleported: '&eYou have been teleported to world "%w%"!'
+  worlds-list: '&3Worlds List:'
