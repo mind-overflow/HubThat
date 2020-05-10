@@ -54,10 +54,12 @@ public class HubThat extends JavaPlugin
         SetSpawnCommand setSpawnCommandInstance = new SetSpawnCommand(this);
         WorldListCommand worldListCommandInstance = new WorldListCommand(this);
         WorldTpCommand worldTpCommandInstance = new WorldTpCommand(this);
+        UpdateChecker updateCheckerInstance = new UpdateChecker(this);
+
+        // We need to instantiate Utils classes because they need to access plugin data and server.
         PermissionUtils permissionUtilsInstance = new PermissionUtils(this);
         TeleportUtils teleportUtilsInstance = new TeleportUtils(this);
         MessageUtils messageUtilsInstance = new MessageUtils(this);
-        UpdateChecker updateCheckerInstance = new UpdateChecker(this);
         updateChecker = new UpdateChecker(this);
         debugger.sendDebugMessage(Level.INFO, "Done instantiating classes!");
 
