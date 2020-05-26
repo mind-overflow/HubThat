@@ -2,7 +2,9 @@ package net.mindoverflow.hubthat.listeners;
 
 import net.mindoverflow.hubthat.HubThat;
 import net.mindoverflow.hubthat.commands.HubCommand;
-import net.mindoverflow.hubthat.utils.*;
+import net.mindoverflow.hubthat.utils.ConfigEntries;
+import net.mindoverflow.hubthat.utils.Debugger;
+import net.mindoverflow.hubthat.utils.MessageUtils;
 import net.mindoverflow.hubthat.utils.files.FileUtils;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -16,9 +18,9 @@ import java.util.logging.Level;
 public class PlayerJoinListener implements Listener
 {
     // Instantiate a Debugger for this class.
-    private Debugger debugger = new Debugger(getClass().getName());
+    private final Debugger debugger = new Debugger(getClass().getName());
 
-    private HubThat plugin;
+    private final HubThat plugin;
     public PlayerJoinListener(HubThat givenPlugin)
     {
         plugin = givenPlugin;

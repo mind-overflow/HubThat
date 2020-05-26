@@ -9,7 +9,7 @@ import java.util.logging.Level;
 
 public class ReloadCommand
 {
-    private static Debugger debugger = new Debugger(ReloadCommand.class.getName());
+    private static final Debugger debugger = new Debugger(ReloadCommand.class.getName());
 
 
     public static void reloadCommand(CommandSender commandSender, HubThat plugin)

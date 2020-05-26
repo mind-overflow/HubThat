@@ -13,9 +13,9 @@ public class PlayerChatListener implements Listener
 {
 
     // Instantiate a Debugger for this class.
-    private Debugger debugger = new Debugger(getClass().getName());
+    private final Debugger debugger = new Debugger(getClass().getName());
 
-    private HubThat plugin;
+    private final HubThat plugin;
     public PlayerChatListener(HubThat givenPlugin)
     {
         plugin = givenPlugin;

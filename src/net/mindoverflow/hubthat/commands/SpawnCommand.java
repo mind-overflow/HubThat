@@ -17,11 +17,11 @@ public class SpawnCommand  implements CommandExecutor
 {
 
     // Initialize the debugger so I can debug the plugin.
-    private static Debugger debugger = new Debugger(SpawnCommand.class.getName());
+    private static final Debugger debugger = new Debugger(SpawnCommand.class.getName());
 
 
     // Initialize the plugin variable so we can access all of the plugin's data.
-    private static HubThat plugin;
+    private final HubThat plugin;
 
     // Constructor to actually give "plugin" a value.
     public SpawnCommand(HubThat givenPlugin) { plugin = givenPlugin; }

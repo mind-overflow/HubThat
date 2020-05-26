@@ -17,7 +17,7 @@ public class TeleportUtils
         plugin = givenPlugin;
     }
     // Initialize the debugger so I can debug the plugin.
-    private static Debugger debugger = new Debugger(TeleportUtils.class.getName());
+    private static final Debugger debugger = new Debugger(TeleportUtils.class.getName());
 
     // Method to teleport a player, given the location coordinates, the world name and the player's name.
     public static void teleportPlayer(double x, double y, double z, double yaw, double pitch, String worldName, String playerName)

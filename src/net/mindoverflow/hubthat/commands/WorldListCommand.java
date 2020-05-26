@@ -15,11 +15,11 @@ public class WorldListCommand implements CommandExecutor
 
 
     // Initialize the debugger so I can debug the plugin.
-    private Debugger debugger = new Debugger(getClass().getName());
+    private final Debugger debugger = new Debugger(getClass().getName());
 
 
     // Initialize the plugin variable so we can access all of the plugin's data.
-    private HubThat plugin;
+    private final HubThat plugin;
 
     // Constructor to actually give "plugin" a value.
     public WorldListCommand(HubThat givenPlugin) { plugin = givenPlugin; }

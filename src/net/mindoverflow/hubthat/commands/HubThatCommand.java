@@ -5,11 +5,9 @@ import net.mindoverflow.hubthat.commands.hubthatcommands.HelpCommand;
 import net.mindoverflow.hubthat.commands.hubthatcommands.ReloadCommand;
 import net.mindoverflow.hubthat.utils.Debugger;
 import net.mindoverflow.hubthat.utils.MessageUtils;
-import net.mindoverflow.hubthat.utils.LocalizedMessages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 
 import java.util.logging.Level;
 
@@ -17,10 +15,10 @@ public class HubThatCommand implements CommandExecutor
 {
 
     // Initialize the plugin variable so we can access all of the plugin's data.
-    private HubThat plugin;
+    private final HubThat plugin;
 
     // Initialize the debugger so I can debug the plugin.
-    private Debugger debugger = new Debugger(getClass().getName());
+    private final Debugger debugger = new Debugger(getClass().getName());
 
     // Constructor to actually give "plugin" a value.
     public HubThatCommand(HubThat givenPlugin)

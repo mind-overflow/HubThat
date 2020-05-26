@@ -24,9 +24,7 @@ public class UpdateChecker implements Runnable
 
     public static BukkitTask task;
 
-    Debugger debugger = new Debugger(getClass().getName());
-
-
+    private final Debugger debugger = new Debugger(getClass().getName());
 
     public String newVersion, updateLink;
     public ArrayList<String> updateText = new ArrayList<>(), warningMessage = new ArrayList<>();
@@ -35,7 +33,7 @@ public class UpdateChecker implements Runnable
     public Boolean isServerUnreachable = true;
     public String errorCode;
 
-    private HubThat plugin;
+    private final HubThat plugin;
     public UpdateChecker(HubThat givenPlugin)
     {
         plugin = givenPlugin;

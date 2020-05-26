@@ -1,6 +1,5 @@
 package net.mindoverflow.hubthat.commands;
 
-import net.mindoverflow.hubthat.HubThat;
 import net.mindoverflow.hubthat.utils.*;
 import net.mindoverflow.hubthat.utils.files.FileUtils;
 import org.bukkit.Location;
@@ -16,15 +15,7 @@ public class SetHubCommand implements CommandExecutor
 {
 
     // Initialize the debugger so I can debug the plugin.
-    private Debugger debugger = new Debugger(getClass().getName());
-
-
-    // Initialize the plugin variable so we can access all of the plugin's data.
-    private HubThat plugin;
-
-    // Constructor to actually give "plugin" a value.
-    public SetHubCommand(HubThat givenPlugin) { plugin = givenPlugin; }
-
+    private final Debugger debugger = new Debugger(getClass().getName());
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args)

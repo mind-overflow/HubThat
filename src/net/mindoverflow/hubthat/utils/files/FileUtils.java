@@ -16,7 +16,7 @@ public class FileUtils
 {
 
     // Instantiate a Debugger for this class.
-    private static Debugger debugger = new Debugger(FileUtils.class.getName());
+    private static final Debugger debugger = new Debugger(FileUtils.class.getName());
 
     // Necessary variables.
     private static HubThat plugin;

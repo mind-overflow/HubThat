@@ -1,9 +1,10 @@
 package net.mindoverflow.hubthat.commands.hubthatcommands;
 
-import net.mindoverflow.hubthat.utils.*;
-import org.bukkit.Location;
+import net.mindoverflow.hubthat.utils.LocalizedMessages;
+import net.mindoverflow.hubthat.utils.MessageUtils;
+import net.mindoverflow.hubthat.utils.PermissionUtils;
+import net.mindoverflow.hubthat.utils.Permissions;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 public class HelpCommand

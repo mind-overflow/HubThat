@@ -1,7 +1,6 @@
 package net.mindoverflow.hubthat.utils;
 
 
-import net.mindoverflow.hubthat.HubThat;
 import net.mindoverflow.hubthat.utils.files.FileUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -12,14 +11,8 @@ import java.util.logging.Level;
 public class MessageUtils
 {
     // Initialize the Debugger instance.
-    private static Debugger debugger = new Debugger(MessageUtils.class.getName());
+    private static final Debugger debugger = new Debugger(MessageUtils.class.getName());
 
-
-    private static HubThat plugin;
-    public MessageUtils(HubThat plugin)
-    {
-        MessageUtils.plugin = plugin;
-    }
     // Method to automatically load and send a localized message to the CommandSender.
     public static void sendLocalizedMessage(CommandSender sender, LocalizedMessages messageEnum)
     {

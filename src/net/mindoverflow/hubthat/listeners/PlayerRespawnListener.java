@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 public class PlayerRespawnListener implements Listener
 {
 
-    private HubThat plugin;
+    private final HubThat plugin;
     public PlayerRespawnListener(HubThat givenPlugin)
     {
         plugin = givenPlugin;

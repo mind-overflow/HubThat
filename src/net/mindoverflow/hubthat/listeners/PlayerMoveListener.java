@@ -1,7 +1,9 @@
 package net.mindoverflow.hubthat.listeners;
 
-import net.mindoverflow.hubthat.HubThat;
-import net.mindoverflow.hubthat.utils.*;
+import net.mindoverflow.hubthat.utils.CommonValues;
+import net.mindoverflow.hubthat.utils.ConfigEntries;
+import net.mindoverflow.hubthat.utils.LocalizedMessages;
+import net.mindoverflow.hubthat.utils.MessageUtils;
 import net.mindoverflow.hubthat.utils.files.FileUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,13 +11,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class PlayerMoveListener implements Listener
 {
-
-    private HubThat plugin;
-
-    public PlayerMoveListener(HubThat givenPlugin)
-    {
-        plugin = givenPlugin;
-    }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event)

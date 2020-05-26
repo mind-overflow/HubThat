@@ -7,12 +7,13 @@ import net.mindoverflow.hubthat.listeners.PlayerChatListener;
 import net.mindoverflow.hubthat.listeners.PlayerJoinListener;
 import net.mindoverflow.hubthat.listeners.PlayerMoveListener;
 import net.mindoverflow.hubthat.listeners.PlayerRespawnListener;
+import net.mindoverflow.hubthat.utils.ConfigEntries;
+import net.mindoverflow.hubthat.utils.Debugger;
+import net.mindoverflow.hubthat.utils.TeleportUtils;
 import net.mindoverflow.hubthat.utils.files.FileUtils;
 import net.mindoverflow.hubthat.utils.files.OldConfigConversion;
 import net.mindoverflow.hubthat.utils.statistics.Metrics;
 import net.mindoverflow.hubthat.utils.statistics.UpdateChecker;
-import net.mindoverflow.hubthat.utils.*;
-import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,12 +24,15 @@ import java.util.logging.Logger;
 public class HubThat extends JavaPlugin
 {
     // Instantiate a Debugger for this class.
-    private Debugger debugger = new Debugger(getClass().getName());
+    private final Debugger debugger = new Debugger(getClass().getName());
 
     // Initializing needed variables.
     public static Logger logger;
     private PluginManager pluginManager;
     public UpdateChecker updateChecker;
+    private static HubThat instance;
+
+    public HubThat() { instance = this; }
 
     // Method called when the plugin is being loaded.
     @Override
@@ -49,24 +53,21 @@ public class HubThat extends JavaPlugin
         FileUtils fileUtilsInstance = new FileUtils(this);
         HubThatCommand hubThatCommandInstance = new HubThatCommand(this);
         HubCommand hubCommandInstance = new HubCommand(this);
-        SetHubCommand setHubCommandInstance = new SetHubCommand(this);
         SpawnCommand spawnCommandInstance = new SpawnCommand(this);
         SetSpawnCommand setSpawnCommandInstance = new SetSpawnCommand(this);
         WorldListCommand worldListCommandInstance = new WorldListCommand(this);
         WorldTpCommand worldTpCommandInstance = new WorldTpCommand(this);
-        UpdateChecker updateCheckerInstance = new UpdateChecker(this);
-
+    
         // We need to instantiate Utils classes because they need to access plugin data and server.
-        PermissionUtils permissionUtilsInstance = new PermissionUtils(this);
         TeleportUtils teleportUtilsInstance = new TeleportUtils(this);
-        MessageUtils messageUtilsInstance = new MessageUtils(this);
+        UpdateChecker updateCheckerInstance = new UpdateChecker(this);
         updateChecker = new UpdateChecker(this);
         debugger.sendDebugMessage(Level.INFO, "Done instantiating classes!");
 
         // Register Listeners
         debugger.sendDebugMessage(Level.INFO, "Registering listeners...");
         pluginManager.registerEvents(new PlayerJoinListener(this), this);
-        pluginManager.registerEvents(new PlayerMoveListener(this), this);
+        pluginManager.registerEvents(new PlayerMoveListener(), this);
         pluginManager.registerEvents(new PlayerChatListener(this), this);
         pluginManager.registerEvents(new PlayerRespawnListener(this), this);
 
@@ -82,7 +83,7 @@ public class HubThat extends JavaPlugin
 
         getCommand("hub").setExecutor(hubCommandInstance);
 
-        getCommand("sethub").setExecutor(setHubCommandInstance);
+        getCommand("sethub").setExecutor(new SetHubCommand());
 
         getCommand("spawn").setExecutor(spawnCommandInstance);
         getCommand("spawn").setTabCompleter(new SpawnCompleter());
@@ -110,37 +111,6 @@ public class HubThat extends JavaPlugin
         debugger.sendDebugMessage(Level.INFO, "Reloading YAML config...");
         FileUtils.reloadYamls();
         debugger.sendDebugMessage(Level.INFO, "Done!");
-
-        // Check for updates, if they are enabled.
-        if(FileUtils.FileType.CONFIG_YAML.yaml.getBoolean(ConfigEntries.UPDATE_CHECKER_ENABLED.path))
-        {
-            debugger.sendDebugMessage(Level.INFO, "Update checking is enabled.");
-            // Start the update checking delayed job. It will handle checking updates, storing variables and telling the console.
-            debugger.sendDebugMessage(Level.INFO, "Running task (via Main).");
-            //UpdateChecker.runTimer();
-            // Check if the links are valid.
-            /*debugger.sendDebugMessage(Level.INFO, "Checking if links are valid via Main.");
-            if(updateCheckerInstance.linksValid())
-            {
-                debugger.sendDebugMessage(Level.INFO, "Links are valid.");
-                // Check if the update is needed (if newest version is different from current version).
-                // We need to surround it with try/catch because it may throw a IOException,
-                try
-                {
-                    debugger.sendDebugMessage(Level.INFO, "Checking updates are needed via Main.");
-                    updateCheckerInstance.checkUpdates();
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            else
-            { // If the links are not valid... (eg: server/internet is offline)
-                // Log it to the console.
-                logger.log(Level.SEVERE, "There's a problem with the updates server.");
-                logger.log(Level.SEVERE, "Please check if there are any updates manually.");
-            }*/
-        }
 
         debugger.sendDebugMessage(Level.INFO,"Setting up Metrics...");
         setupMetrics();
@@ -181,4 +151,8 @@ public class HubThat extends JavaPlugin
         }
     }
 
+    public static HubThat getInstance()
+    {
+        return instance;
+    }
 }
