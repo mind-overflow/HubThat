@@ -70,6 +70,7 @@ public class FileUtils
             UpdateChecker.task = plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, plugin.updateChecker, 1, 20 * 60 * 60 * 12);
         }
 
+        CommonValues.invisibilityFix = config.getBoolean(ConfigEntries.INVISIBILITY_FIX.path);
     }
 
     // Only reload the needed File.

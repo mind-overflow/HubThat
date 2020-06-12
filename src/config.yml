@@ -17,3 +17,4 @@ teleportation:
   respawn-handler: true
 settings:
   multiverse-bypass: false
+  fix-invisible-after-tp: false

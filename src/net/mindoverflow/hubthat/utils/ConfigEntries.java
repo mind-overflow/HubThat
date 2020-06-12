@@ -24,6 +24,8 @@ public enum ConfigEntries
 
     MULTIVERSE_BYPASS("settings.multiverse-bypass"),
 
+    INVISIBILITY_FIX("settings.fix-invisible-after-tp"),
+
     //UPDATE_CHECKER_ENABLE("updates.enable-update-checker"),
     ;
 

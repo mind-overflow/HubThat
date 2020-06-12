@@ -24,7 +24,11 @@ public class TeleportUtils
     {
         Location location = new Location(plugin.getServer().getWorld(worldName), x, y, z, (float)yaw, (float)pitch);
         Player player = plugin.getServer().getPlayer(playerName);
-        player.teleport(location);
+        if(player == null) return;
+
+        fixInvisibilityBefore(player, location);
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.teleport(location), 1);
+        fixInvisibilityAfter(player);
     }
 
     // Method to teleport a player, given its username and defined if it's a hub or a spawn.
@@ -121,7 +125,9 @@ public class TeleportUtils
 
         // Store the location in a variable and teleport the player to it.
         final Location finalLocation = new Location(destinationWorld, x, y, z, (float)yaw, (float)pitch);
-        player.teleport(finalLocation);
+        fixInvisibilityBefore(player, finalLocation);
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.teleport(finalLocation), 1);
+        fixInvisibilityAfter(player);
 
         // Check if the player is teleporting to the hub.
         if(type == FileUtils.FileType.HUB_YAML)
@@ -135,7 +141,7 @@ public class TeleportUtils
                 sender.sendMessage(message);
             }
         }
-        else if(type == FileUtils.FileType.SPAWN_YAML)
+        else //if(type == FileUtils.FileType.SPAWN_YAML) // left here but commented, for easy understanding
         {
             MessageUtils.sendLocalizedMessage(player, LocalizedMessages.INFO_SPAWN_TELEPORTED);
 
@@ -150,4 +156,19 @@ public class TeleportUtils
     {
         teleportPlayer(sender, player, type, null);
     }
+
+    public static void fixInvisibilityAfter(Player player)
+    {
+        if(CommonValues.invisibilityFix)
+        {
+            debugger.sendDebugMessage(Level.INFO, "Invisibility fix enabled!");
+            player.getInventory().addItem(CommonValues.AIR);
+        }
+    }
+
+    public static void fixInvisibilityBefore(Player player, Location destination)
+    {
+        destination.getChunk().load();
+    }
+
 }

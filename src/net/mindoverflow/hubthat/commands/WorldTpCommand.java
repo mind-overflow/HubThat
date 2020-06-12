@@ -12,6 +12,9 @@ import org.bukkit.entity.Player;
 
 import java.util.logging.Level;
 
+import static net.mindoverflow.hubthat.utils.TeleportUtils.fixInvisibilityAfter;
+import static net.mindoverflow.hubthat.utils.TeleportUtils.fixInvisibilityBefore;
+
 public class WorldTpCommand implements CommandExecutor
 {
 
@@ -70,7 +73,9 @@ public class WorldTpCommand implements CommandExecutor
             // Cast Player to commandSender so we can teleport it.
             Player player = (Player)commandSender;
             // Teleport the Player.
-            player.teleport(destinationLocation);
+            fixInvisibilityBefore(player, destinationLocation);
+            plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.teleport(destinationLocation), 1);
+            fixInvisibilityAfter(player);
             // Tell the player he has been teleported.
             String teleportedMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_WORLDTP_TELEPORTED, false);
             teleportedMessage = teleportedMessage.replace("%world%", destinationWorldName).replace("%w%", destinationWorldName);
