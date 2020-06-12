@@ -137,15 +137,13 @@ public class HubCommand  implements CommandExecutor
     }
 
     // Method to teleport the player to the hub.
-    public static void teleportToHub(CommandSender sender, Player player)
+    public static void teleportToHub(CommandSender actor, Player player)
     {
         String username = player.getName();
 
-        // Require the world to be Non Null
-        String worldName = Objects.requireNonNull(player.getWorld().getName());
-        debugger.sendDebugMessage(Level.INFO, "Player name: " + username + "; World name: " + worldName);
         // Teleport the player to the destination.
-        TeleportUtils.teleportPlayer(sender, player, FileUtils.FileType.HUB_YAML, worldName);
+        TeleportUtils.teleportPlayer(actor, player, FileUtils.FileType.HUB_YAML);
+
         // Remove it from the "teleporting" list - so it won't get teleported if it's waiting the spawn delay.
         CommonValues.teleporting.remove(username);
     }

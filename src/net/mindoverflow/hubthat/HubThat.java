@@ -32,7 +32,10 @@ public class HubThat extends JavaPlugin
     public UpdateChecker updateChecker;
     private static HubThat instance;
 
-    public HubThat() { instance = this; }
+    public HubThat()
+    {
+        instance = this;
+    }
 
     // Method called when the plugin is being loaded.
     @Override
@@ -57,7 +60,7 @@ public class HubThat extends JavaPlugin
         SetSpawnCommand setSpawnCommandInstance = new SetSpawnCommand(this);
         WorldListCommand worldListCommandInstance = new WorldListCommand(this);
         WorldTpCommand worldTpCommandInstance = new WorldTpCommand(this);
-    
+
         // We need to instantiate Utils classes because they need to access plugin data and server.
         TeleportUtils teleportUtilsInstance = new TeleportUtils(this);
         UpdateChecker updateCheckerInstance = new UpdateChecker(this);
@@ -72,7 +75,6 @@ public class HubThat extends JavaPlugin
         pluginManager.registerEvents(new PlayerRespawnListener(this), this);
 
 
-        
         debugger.sendDebugMessage(Level.INFO, "Done registering listeners!");
 
         // Register Commands
@@ -112,9 +114,9 @@ public class HubThat extends JavaPlugin
         FileUtils.reloadYamls();
         debugger.sendDebugMessage(Level.INFO, "Done!");
 
-        debugger.sendDebugMessage(Level.INFO,"Setting up Metrics...");
+        debugger.sendDebugMessage(Level.INFO, "Setting up Metrics...");
         setupMetrics();
-        debugger.sendDebugMessage(Level.INFO,"Done setting up Metrics!");
+        debugger.sendDebugMessage(Level.INFO, "Done setting up Metrics!");
 
         // Send success output message to console.
         logger.log(Level.INFO, "Plugin " + getDescription().getName() + " Successfully Loaded!");
@@ -124,7 +126,8 @@ public class HubThat extends JavaPlugin
 
     // Method called when the plugin is being unloaded.
     @Override
-    public void onDisable() {
+    public void onDisable()
+    {
         debugger.sendDebugMessage(Level.WARNING, "---[ DEBUGGER IS ENABLED! ]---");
         debugger.sendDebugMessage(Level.WARNING, "---[ DISABLING PLUGIN ]---");
         getServer().getScheduler().cancelTasks(this);
@@ -145,7 +148,7 @@ public class HubThat extends JavaPlugin
         metrics.addCustomChart(new Metrics.SimplePie("tp-hub-on-join", () -> config.getString(ConfigEntries.TELEPORTATION_TP_HUB_ON_JOIN.path)));
         metrics.addCustomChart(new Metrics.SimplePie("tp-hub-on-respawn", () -> config.getString(ConfigEntries.TELEPORTATION_TP_HUB_ON_RESPAWN.path)));
 
-        if(config.getBoolean(ConfigEntries.GAMEMODE_SET_ON_JOIN.path))
+        if (config.getBoolean(ConfigEntries.GAMEMODE_SET_ON_JOIN.path))
         {
             metrics.addCustomChart(new Metrics.SimplePie("join-gamemode", () -> config.getString(ConfigEntries.GAMEMODE.path)));
         }

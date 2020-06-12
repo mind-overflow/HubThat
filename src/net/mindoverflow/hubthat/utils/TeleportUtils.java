@@ -120,7 +120,7 @@ public class TeleportUtils
         }
 
         // Store the location in a variable and teleport the player to it.
-        Location finalLocation = new Location(destinationWorld, x, y, z, (float)yaw, (float)pitch);
+        final Location finalLocation = new Location(destinationWorld, x, y, z, (float)yaw, (float)pitch);
         player.teleport(finalLocation);
 
         // Check if the player is teleporting to the hub.
@@ -145,5 +145,9 @@ public class TeleportUtils
                 sender.sendMessage(message);
             }
         }
+    }
+    public static void teleportPlayer(CommandSender sender, Player player, FileUtils.FileType type)
+    {
+        teleportPlayer(sender, player, type, null);
     }
 }
