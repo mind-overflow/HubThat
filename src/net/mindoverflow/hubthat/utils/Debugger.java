@@ -10,7 +10,7 @@ import java.util.logging.Level;
 public class Debugger
 {
     // Enable or disable debugging messages (aka verbosity).
-    private final boolean DEBUGGING = true;
+    private final boolean DEBUGGING = false;
 
     // Initialize needed variables. We will need those variables to be able to precisely debug the plugin.
     private String className;
