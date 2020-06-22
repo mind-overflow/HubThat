@@ -1,5 +1,5 @@
 name: HubThat
-version: BUILD_NUMBER
+version: 10.0.167
 author: mind_overflow
 main: net.mindoverflow.hubthat.HubThat
 api-version: 1.13
