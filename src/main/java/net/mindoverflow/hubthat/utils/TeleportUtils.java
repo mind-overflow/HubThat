@@ -27,8 +27,11 @@ public class TeleportUtils
         if(player == null) return;
 
         fixInvisibilityBefore(player, location);
-        plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.teleport(location), 1);
-        fixInvisibilityAfter(player);
+        plugin.getServer().getScheduler().runTaskLater(plugin, () ->
+                {
+                    player.teleport(location);
+                    fixInvisibilityAfter(player);
+                }, 1);
     }
 
     // Method to teleport a player, given its username and defined if it's a hub or a spawn.
@@ -126,8 +129,12 @@ public class TeleportUtils
         // Store the location in a variable and teleport the player to it.
         final Location finalLocation = new Location(destinationWorld, x, y, z, (float)yaw, (float)pitch);
         fixInvisibilityBefore(player, finalLocation);
-        plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.teleport(finalLocation), 1);
-        fixInvisibilityAfter(player);
+        plugin.getServer().getScheduler().runTaskLater(plugin, () ->
+        {
+            player.teleport(finalLocation);
+            fixInvisibilityAfter(player);
+
+        }, 1);
 
         // Check if the player is teleporting to the hub.
         if(type == FileUtils.FileType.HUB_YAML)
