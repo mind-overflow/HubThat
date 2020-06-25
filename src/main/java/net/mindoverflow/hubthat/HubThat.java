@@ -12,8 +12,8 @@ import net.mindoverflow.hubthat.utils.Debugger;
 import net.mindoverflow.hubthat.utils.TeleportUtils;
 import net.mindoverflow.hubthat.utils.files.FileUtils;
 import net.mindoverflow.hubthat.utils.files.OldConfigConversion;
-import net.mindoverflow.hubthat.utils.statistics.Metrics;
-import net.mindoverflow.hubthat.utils.statistics.UpdateChecker;
+import net.mindoverflow.hubthat.utils.metrics.Metrics;
+import net.mindoverflow.hubthat.utils.metrics.UpdateChecker;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -147,6 +147,9 @@ public class HubThat extends JavaPlugin
         metrics.addCustomChart(new Metrics.SimplePie("set-gamemode-on-join", () -> config.getString(ConfigEntries.GAMEMODE_SET_ON_JOIN.path)));
         metrics.addCustomChart(new Metrics.SimplePie("tp-hub-on-join", () -> config.getString(ConfigEntries.TELEPORTATION_TP_HUB_ON_JOIN.path)));
         metrics.addCustomChart(new Metrics.SimplePie("tp-hub-on-respawn", () -> config.getString(ConfigEntries.TELEPORTATION_TP_HUB_ON_RESPAWN.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("multiverse-bypass", () -> config.getString(ConfigEntries.MULTIVERSE_BYPASS.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("send-tp-message-on-join", () -> config.getString(ConfigEntries.TELEPORTATION_TP_MESSAGE_ON_JOIN.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("fix-invisible-after-tp", () -> config.getString(ConfigEntries.INVISIBILITY_FIX.path)));
 
         if (config.getBoolean(ConfigEntries.GAMEMODE_SET_ON_JOIN.path))
         {

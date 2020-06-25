@@ -4,7 +4,7 @@ import net.mindoverflow.hubthat.HubThat;
 import net.mindoverflow.hubthat.utils.PluginCache;
 import net.mindoverflow.hubthat.utils.ConfigEntries;
 import net.mindoverflow.hubthat.utils.Debugger;
-import net.mindoverflow.hubthat.utils.statistics.UpdateChecker;
+import net.mindoverflow.hubthat.utils.metrics.UpdateChecker;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.*;
@@ -67,7 +67,7 @@ public class FileUtils
                 plugin.getServer().getScheduler().cancelTask(UpdateChecker.task.getTaskId());
             }
 
-            UpdateChecker.task = plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, plugin.updateChecker, 1, 20 * 60 * 60 * 12);
+            UpdateChecker.task = plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, plugin.updateChecker, 1, 20 * 60 * 60 * 12); // 12 hours
         }
 
         PluginCache.invisibilityFix = config.getBoolean(ConfigEntries.INVISIBILITY_FIX.path);

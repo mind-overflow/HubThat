@@ -1,4 +1,4 @@
-package net.mindoverflow.hubthat.utils.statistics;
+package net.mindoverflow.hubthat.utils.metrics;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
