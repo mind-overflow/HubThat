@@ -26,7 +26,7 @@ public class TeleportUtils
         Player player = plugin.getServer().getPlayer(playerName);
         if(player == null) return;
 
-        fixInvisibilityBefore(player, location);
+        fixInvisibilityBefore(location);
         plugin.getServer().getScheduler().runTaskLater(plugin, () ->
                 {
                     player.teleport(location);
@@ -35,7 +35,7 @@ public class TeleportUtils
     }
 
     // Method to teleport a player, given its username and defined if it's a hub or a spawn.
-    public static void teleportPlayer(CommandSender sender, Player player, FileUtils.FileType type, String currentWorldName)
+    public static void teleportPlayer(CommandSender sender, Player player, FileUtils.FileType type, String currentWorldName, boolean sendMessage)
     {
         // Get the Player object from his playername.
         //Player player = plugin.getServer().getPlayer(playerName);
@@ -88,16 +88,16 @@ public class TeleportUtils
             if(type == FileUtils.FileType.HUB_YAML)
             {
                 // send a message about the hub being not set
-                MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_HUB_NOT_SET);
+                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_HUB_NOT_SET);
             }
             else if(type == FileUtils.FileType.SPAWN_YAML)
             {
                 // send a message about the spawn being not set.
-                MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_SPAWN_NOT_SET);
+                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_SPAWN_NOT_SET);
             }
             else
             {
-                MessageUtils.sendColorizedMessage(sender, "&cError in code. Contact the developer!");
+                if(sendMessage) MessageUtils.sendColorizedMessage(sender, "&cError in code. Contact the developer!");
             }
             // Stop.
             return;
@@ -109,7 +109,7 @@ public class TeleportUtils
             if(worldName.equals("__UNSET__") && type == FileUtils.FileType.HUB_YAML)
             {
                 // Warn the player about the hub not being set.
-                MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_HUB_NOT_SET);
+                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_HUB_NOT_SET);
                 // Stop.
                 return;
             }
@@ -120,15 +120,18 @@ public class TeleportUtils
         if(destinationWorld == null)
         {
             // Tell the player that the world does not exist.
-            String errorWorldNotExistingMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_WORLD_NOT_EXISTING, false);
-            errorWorldNotExistingMessage = errorWorldNotExistingMessage.replace("%w%", worldName);
-            MessageUtils.sendColorizedMessage(player, errorWorldNotExistingMessage);
+            if(sendMessage)
+            {
+                String errorWorldNotExistingMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_WORLD_NOT_EXISTING, false);
+                errorWorldNotExistingMessage = errorWorldNotExistingMessage.replace("%w%", worldName);
+                MessageUtils.sendColorizedMessage(player, errorWorldNotExistingMessage);
+            }
             return;
         }
 
         // Store the location in a variable and teleport the player to it.
         final Location finalLocation = new Location(destinationWorld, x, y, z, (float)yaw, (float)pitch);
-        fixInvisibilityBefore(player, finalLocation);
+        fixInvisibilityBefore(finalLocation);
         plugin.getServer().getScheduler().runTaskLater(plugin, () ->
         {
             player.teleport(finalLocation);
@@ -140,9 +143,9 @@ public class TeleportUtils
         if(type == FileUtils.FileType.HUB_YAML)
         {
             // Send a message to the player about him being successfully teleported.
-            MessageUtils.sendLocalizedMessage(player, LocalizedMessages.INFO_HUB_TELEPORTED);
+            if(sendMessage) MessageUtils.sendLocalizedMessage(player, LocalizedMessages.INFO_HUB_TELEPORTED);
 
-            if(sender != player)
+            if((sender != player) && (sendMessage))
             {
                 String message = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_HUB_TELEPORTED_OTHER, true).replace("%player%", player.getName());
                 sender.sendMessage(message);
@@ -150,15 +153,26 @@ public class TeleportUtils
         }
         else //if(type == FileUtils.FileType.SPAWN_YAML) // left here but commented, for easy understanding
         {
-            MessageUtils.sendLocalizedMessage(player, LocalizedMessages.INFO_SPAWN_TELEPORTED);
+            if(sendMessage) MessageUtils.sendLocalizedMessage(player, LocalizedMessages.INFO_SPAWN_TELEPORTED);
 
-            if(sender != player)
+            if((sender != player) && (sendMessage))
             {
                 String message = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_SPAWN_TELEPORTED_OTHER, true).replace("%player%", player.getName()).replace("%world%", worldName);
                 sender.sendMessage(message);
             }
         }
     }
+
+    public static void teleportPlayer(CommandSender sender, Player player, FileUtils.FileType type, String currentWorldName)
+    {
+        teleportPlayer(sender, player, type, currentWorldName, true);
+    }
+
+    public static void teleportPlayer(CommandSender sender, Player player, FileUtils.FileType type, boolean sendMessage)
+    {
+        teleportPlayer(sender, player, type, null, sendMessage);
+    }
+
     public static void teleportPlayer(CommandSender sender, Player player, FileUtils.FileType type)
     {
         teleportPlayer(sender, player, type, null);
@@ -166,14 +180,14 @@ public class TeleportUtils
 
     public static void fixInvisibilityAfter(Player player)
     {
-        if(CommonValues.invisibilityFix)
+        if(PluginCache.invisibilityFix)
         {
             debugger.sendDebugMessage(Level.INFO, "Invisibility fix enabled!");
-            player.getInventory().addItem(CommonValues.AIR);
+            player.getInventory().addItem(PluginCache.AIR);
         }
     }
 
-    public static void fixInvisibilityBefore(Player player, Location destination)
+    public static void fixInvisibilityBefore(Location destination)
     {
         destination.getChunk().load();
     }

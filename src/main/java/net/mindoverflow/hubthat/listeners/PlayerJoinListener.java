@@ -5,6 +5,7 @@ import net.mindoverflow.hubthat.commands.HubCommand;
 import net.mindoverflow.hubthat.utils.ConfigEntries;
 import net.mindoverflow.hubthat.utils.Debugger;
 import net.mindoverflow.hubthat.utils.MessageUtils;
+import net.mindoverflow.hubthat.utils.PluginCache;
 import net.mindoverflow.hubthat.utils.files.FileUtils;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -87,11 +88,11 @@ public class PlayerJoinListener implements Listener
 
             if(configYaml.getBoolean(ConfigEntries.MULTIVERSE_BYPASS.path))
             {
-                plugin.getServer().getScheduler().runTaskLater(plugin, ()-> HubCommand.teleportToHub(player, player), 10L);
+                plugin.getServer().getScheduler().runTaskLater(plugin, ()-> HubCommand.teleportToHub(player, player, PluginCache.sendJoinTpMessage), 10L);
             }
             else
             {
-                HubCommand.teleportToHub(player, player);
+                HubCommand.teleportToHub(player, player, PluginCache.sendJoinTpMessage);
             }
         }
     }

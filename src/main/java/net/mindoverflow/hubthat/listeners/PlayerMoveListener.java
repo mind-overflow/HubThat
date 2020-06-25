@@ -1,6 +1,6 @@
 package net.mindoverflow.hubthat.listeners;
 
-import net.mindoverflow.hubthat.utils.CommonValues;
+import net.mindoverflow.hubthat.utils.PluginCache;
 import net.mindoverflow.hubthat.utils.ConfigEntries;
 import net.mindoverflow.hubthat.utils.LocalizedMessages;
 import net.mindoverflow.hubthat.utils.MessageUtils;
@@ -23,7 +23,7 @@ public class PlayerMoveListener implements Listener
             String playerName = event.getPlayer().getName();
 
             // Check if the player is waiting the teleport delay.
-            if (CommonValues.teleporting.contains(playerName))
+            if (PluginCache.teleporting.contains(playerName))
             {
                 // Check if the player moved a whole block.
                 if(event.getFrom().getBlockX() != event.getTo().getBlockX() ||
@@ -31,8 +31,8 @@ public class PlayerMoveListener implements Listener
                         event.getFrom().getBlockZ() != event.getTo().getBlockZ())
                 {
                     // Remove the player from the list and warn him.
-                    CommonValues.teleporting.remove(playerName);
-                    CommonValues.cancelRunnable.add(playerName);
+                    PluginCache.teleporting.remove(playerName);
+                    PluginCache.cancelRunnable.add(playerName);
                     MessageUtils.sendLocalizedMessage(event.getPlayer(), LocalizedMessages.WARNING_TELEPORTATION_CANCELLED);
                 }
             }

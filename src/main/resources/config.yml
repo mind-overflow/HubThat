@@ -13,6 +13,7 @@ gamemode:
   mode: 0
 teleportation:
   teleport-to-hub-on-join: true
+  send-tp-message-on-join: true
   teleport-to-hub-on-respawn: false
   respawn-handler: true
 settings:

@@ -9,7 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Objects;
 import java.util.logging.Level;
 
 public class HubCommand  implements CommandExecutor
@@ -89,10 +88,10 @@ public class HubCommand  implements CommandExecutor
             else
             {
                 // Check if he's not already teleporting.
-                if(!CommonValues.teleporting.contains(username))
+                if(!PluginCache.teleporting.contains(username))
                 {
                     // Put the player in the ArrayList of players waiting to be teleported.
-                    CommonValues.teleporting.add(username);
+                    PluginCache.teleporting.add(username);
                     // Load the teleportation delay.
                     int delay = FileUtils.FileType.CONFIG_YAML.yaml.getInt(ConfigEntries.HUB_DELAY.path);
 
@@ -108,11 +107,11 @@ public class HubCommand  implements CommandExecutor
                         @Override
                         public void run()
                         {
-                            if(!CommonValues.cancelRunnable.contains(username) && CommonValues.teleporting.contains(username))
+                            if(!PluginCache.cancelRunnable.contains(username) && PluginCache.teleporting.contains(username))
                             {
                                 teleportToHub(commandSender, (Player)commandSender);
                             }
-                            CommonValues.cancelRunnable.remove(username);
+                            PluginCache.cancelRunnable.remove(username);
 
                         }
                     }, delay * 20); // Convert seconds to ticks.
@@ -136,15 +135,20 @@ public class HubCommand  implements CommandExecutor
         }
     }
 
-    // Method to teleport the player to the hub.
-    public static void teleportToHub(CommandSender actor, Player player)
+    public static void teleportToHub(CommandSender actor, Player player, boolean sendMessage)
     {
         String username = player.getName();
 
         // Teleport the player to the destination.
-        TeleportUtils.teleportPlayer(actor, player, FileUtils.FileType.HUB_YAML);
+        TeleportUtils.teleportPlayer(actor, player, FileUtils.FileType.HUB_YAML, sendMessage);
 
         // Remove it from the "teleporting" list - so it won't get teleported if it's waiting the spawn delay.
-        CommonValues.teleporting.remove(username);
+        PluginCache.teleporting.remove(username);
+    }
+
+    // Method to teleport the player to the hub.
+    public static void teleportToHub(CommandSender actor, Player player)
+    {
+        teleportToHub(actor, player, true);
     }
 }

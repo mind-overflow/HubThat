@@ -233,7 +233,7 @@ public class UpdateChecker implements Runnable
             if(!(player instanceof Player)) return;
 
             // Check if the updater is enabled.
-            if(CommonValues.updateChecker)
+            if(PluginCache.updateChecker)
             {
                 debugger.sendDebugMessage(Level.INFO, "Update Checker is enabled!");
                 // Check if the player has permissions to get notifications about updates.

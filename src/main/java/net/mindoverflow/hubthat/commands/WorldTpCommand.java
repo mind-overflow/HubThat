@@ -73,7 +73,7 @@ public class WorldTpCommand implements CommandExecutor
             // Cast Player to commandSender so we can teleport it.
             Player player = (Player)commandSender;
             // Teleport the Player.
-            fixInvisibilityBefore(player, destinationLocation);
+            fixInvisibilityBefore(destinationLocation);
             plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.teleport(destinationLocation), 1);
             fixInvisibilityAfter(player);
             // Tell the player he has been teleported.

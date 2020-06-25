@@ -5,6 +5,7 @@ import net.mindoverflow.hubthat.commands.hubthatcommands.HelpCommand;
 import net.mindoverflow.hubthat.commands.hubthatcommands.ReloadCommand;
 import net.mindoverflow.hubthat.utils.Debugger;
 import net.mindoverflow.hubthat.utils.MessageUtils;
+import net.mindoverflow.hubthat.utils.PluginCache;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -46,10 +47,10 @@ public class HubThatCommand implements CommandExecutor
         // Check if there are any args.
         if(args.length == 0)
         {
-            MessageUtils.sendColorizedMessage(commandSender, "&7HubThat version &6" + plugin.getDescription().getVersion() + " for SpigotMC/CraftBukkit &61.7&7-&61.15&7.");
-            MessageUtils.sendColorizedMessage(commandSender, "&7Coded by &6mind_overflow&7, all rights reserved (&6Copyright © '20&7).");
+            MessageUtils.sendColorizedMessage(commandSender, "&6" + plugin.getName() +"&7 version &6" + plugin.getDescription().getVersion() + "&7 for &6SpigotMC/CraftBukkit &6" + PluginCache.minSupportedVersion + "&7-&6" + PluginCache.maxSupportedVersion + "&7.");
+            MessageUtils.sendColorizedMessage(commandSender, "&7Coded by &6" + debugger.authorName + "&7, all rights reserved (&6Copyright © '20&7).");
             commandSender.sendMessage("");
-            MessageUtils.sendColorizedMessage(commandSender, "&7Write &6/hubthat help&7 to see plugin commands.");
+            MessageUtils.sendColorizedMessage(commandSender, "&7Write &6/"+ plugin.getName().toLowerCase() + " help&7 to see plugin commands.");
         }
         // Check if there is a single argument after the command itself.
         else if (args.length == 1)

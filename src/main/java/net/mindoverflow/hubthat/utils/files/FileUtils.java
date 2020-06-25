@@ -1,7 +1,7 @@
 package net.mindoverflow.hubthat.utils.files;
 
 import net.mindoverflow.hubthat.HubThat;
-import net.mindoverflow.hubthat.utils.CommonValues;
+import net.mindoverflow.hubthat.utils.PluginCache;
 import net.mindoverflow.hubthat.utils.ConfigEntries;
 import net.mindoverflow.hubthat.utils.Debugger;
 import net.mindoverflow.hubthat.utils.statistics.UpdateChecker;
@@ -61,7 +61,7 @@ public class FileUtils
 
         if(config.getBoolean(ConfigEntries.UPDATE_CHECKER_ENABLED.path))
         {
-            CommonValues.updateChecker = true;
+            PluginCache.updateChecker = true;
             if(UpdateChecker.task != null)
             {
                 plugin.getServer().getScheduler().cancelTask(UpdateChecker.task.getTaskId());
@@ -70,7 +70,8 @@ public class FileUtils
             UpdateChecker.task = plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, plugin.updateChecker, 1, 20 * 60 * 60 * 12);
         }
 
-        CommonValues.invisibilityFix = config.getBoolean(ConfigEntries.INVISIBILITY_FIX.path);
+        PluginCache.invisibilityFix = config.getBoolean(ConfigEntries.INVISIBILITY_FIX.path);
+        PluginCache.sendJoinTpMessage = config.getBoolean(ConfigEntries.TELEPORTATION_TP_MESSAGE_ON_JOIN.path);
     }
 
     // Only reload the needed File.

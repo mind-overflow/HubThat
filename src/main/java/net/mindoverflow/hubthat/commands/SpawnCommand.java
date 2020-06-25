@@ -96,7 +96,7 @@ public class SpawnCommand  implements CommandExecutor
             else
             {
                 // Check if he's not already teleporting.
-                if(!CommonValues.teleporting.contains(username))
+                if(!PluginCache.teleporting.contains(username))
                 {
                     if(args.length > 0)
                     {
@@ -126,18 +126,18 @@ public class SpawnCommand  implements CommandExecutor
                     MessageUtils.sendColorizedMessage(commandSender, delayMessage);
 
                     // Put the player in the ArrayList of players waiting to be teleported.
-                    CommonValues.teleporting.add(username);
+                    PluginCache.teleporting.add(username);
                     // Start a timer.
                     Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,() ->
                     {
-                            if(!CommonValues.cancelRunnable.contains(username) && CommonValues.teleporting.contains(username))
+                            if(!PluginCache.cancelRunnable.contains(username) && PluginCache.teleporting.contains(username))
                             {
 
                                 // Run method to check if there are any args and teleport the player accordingly.
                                 checkArgsAndTeleport(args, commandSender);
 
                             }
-                            CommonValues.cancelRunnable.remove(username);
+                            PluginCache.cancelRunnable.remove(username);
 
                     }, delay * 20); // Convert seconds to ticks.
                     return true;
@@ -201,6 +201,6 @@ public class SpawnCommand  implements CommandExecutor
         TeleportUtils.teleportPlayer(sender, player, FileUtils.FileType.SPAWN_YAML, worldName);
         // Remove the player from the teleporting list, since it's not teleporting anymore.
         // Also remove it from the "teleporting" list - so it won't get teleported if it's waiting the hub delay.
-        CommonValues.teleporting.remove(username);
+        PluginCache.teleporting.remove(username);
     }
 }

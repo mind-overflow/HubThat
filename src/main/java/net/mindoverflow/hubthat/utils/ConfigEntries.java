@@ -20,6 +20,8 @@ public enum ConfigEntries
 
     TELEPORTATION_TP_HUB_ON_JOIN("teleportation.teleport-to-hub-on-join"),
 
+    TELEPORTATION_TP_MESSAGE_ON_JOIN("teleportation.send-tp-message-on-join"),
+
     TELEPORTATION_TP_HUB_ON_RESPAWN("teleportation.teleport-to-hub-on-respawn"),
 
     MULTIVERSE_BYPASS("settings.multiverse-bypass"),

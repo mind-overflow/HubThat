@@ -2,6 +2,7 @@ package net.mindoverflow.hubthat.commands;
 
 import net.mindoverflow.hubthat.HubThat;
 import net.mindoverflow.hubthat.utils.*;
+import org.bukkit.Difficulty;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -47,26 +48,29 @@ public class WorldListCommand implements CommandExecutor
                 i++;
                 // Store world type and difficulty.
                 String worldType = currentWorld.getWorldType().getName().toLowerCase();
-                String worldDifficulty = currentWorld.getDifficulty().name().toLowerCase();
+
+                Difficulty difficulty = currentWorld.getDifficulty();
+                String worldDifficulty = difficulty.name().toLowerCase();
+                if(difficulty == Difficulty.PEACEFUL) worldDifficulty = "&b" + worldDifficulty;
+                else if(difficulty == Difficulty.EASY) worldDifficulty = "&a" + worldDifficulty;
+                else if(difficulty == Difficulty.NORMAL) worldDifficulty = "&e" + worldDifficulty;
+                else if(difficulty == Difficulty.HARD) worldDifficulty = "&c" + worldDifficulty;
+
                 World.Environment environment = currentWorld.getEnvironment();
                 String worldEnvironment = environment.name().toLowerCase();
                 if(environment == World.Environment.NETHER) worldEnvironment = "&c" + worldEnvironment;
-                else if(environment == World.Environment.THE_END) worldEnvironment = "&d" + worldEnvironment;
+                else if(environment == World.Environment.THE_END) worldEnvironment = "&dend";
                 else if(environment == World.Environment.NORMAL) worldEnvironment = "&a" + worldEnvironment;
 
-                // Store player numbers. We have a list of all players, so we will need to iterate through all of them.
-                int playersNumber = 0;
-                for(Player p : currentWorld.getPlayers())
-                {
-                    playersNumber++;
-                }
+                // Store player numbers.
+                int playersNumber = currentWorld.getPlayers().size();
 
                 // Send the completed message.
                 MessageUtils.sendColorizedMessage(commandSender, "&3" + i + "&7: &b" + currentWorld.getName() +
-                        "&7, type: &e" + worldType +
-                        "&7, players: &e" + playersNumber +
-                        "&7, difficulty: &e" + worldDifficulty +
-                        "&7, environment: &e" + worldEnvironment);
+                        "&7, type: &e" + worldType + //type (flat, normal, large biomes)
+                        "&7, pl: &e" + playersNumber + //players
+                        "&7, diff: &e" + worldDifficulty +//difficulty (peaceful, easy, normal, hard)
+                        "&7, env: &e" + worldEnvironment); //environment (normal, nether, the_end)
             }
 
             MessageUtils.sendColorizedMessage(commandSender, "&7---------");
