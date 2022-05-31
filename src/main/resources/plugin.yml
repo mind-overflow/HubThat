@@ -1,7 +1,7 @@
 name: HubThat
 version: ${versionName}.${buildNumber}
 author: mind_overflow
-main: net.mindoverflow.hubthat.HubThat
+main: wtf.beatrice.hubthat.HubThat
 api-version: 1.13
 commands:
   hubthat:
