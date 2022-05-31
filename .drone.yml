@@ -2,8 +2,8 @@ kind: pipeline
 name: default
 
 steps:
-  - name: test
-    image: maven:3-jdk-10
+  - name: build
+    image: maven:3-eclipse-temurin-17
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
       - mvn test -B
