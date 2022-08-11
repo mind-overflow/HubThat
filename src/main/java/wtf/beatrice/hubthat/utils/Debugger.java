@@ -16,11 +16,11 @@ public class Debugger
     private String className;
     private String packageName;
 
-    // Save my UUID and current Username somewhere so I can get debug messages too.
+    // Save my UUID and current Username somewhere, so I can get debug messages too.
     public UUID authorUUID = UUID.fromString("297a1dc8-c0a3-485a-ad21-8956c749f927");
     public String authorName = "mind_overflow";
 
-    // Make a constructor requiring to be given a class so we exactly know which class has made an instance of it and all of its properties.
+    // Make a constructor requiring to be given a class, so we exactly know which class has made an instance of it and all of its properties.
     public Debugger(String instanceClassName)
     {
         // Only run this code and actually make a whole instance of the class only if debugging is active.

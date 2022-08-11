@@ -48,7 +48,7 @@ public class HubThatCommand implements CommandExecutor
         if(args.length == 0)
         {
             MessageUtils.sendColorizedMessage(commandSender, "&6" + plugin.getName() +"&7 version &6" + plugin.getDescription().getVersion() + "&7 for &6SpigotMC/CraftBukkit &6" + PluginCache.minSupportedVersion + "&7-&6" + PluginCache.maxSupportedVersion + "&7.");
-            MessageUtils.sendColorizedMessage(commandSender, "&7Coded by &6" + debugger.authorName + "&7, all rights reserved (&6Copyright © '20&7).");
+            MessageUtils.sendColorizedMessage(commandSender, "&7Coded by &6" + debugger.authorName + "&7, &6GNU GPLv3&7).");
             commandSender.sendMessage("");
             MessageUtils.sendColorizedMessage(commandSender, "&7Write &6/"+ plugin.getName().toLowerCase() + " help&7 to see plugin commands.");
         }
