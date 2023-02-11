@@ -54,7 +54,10 @@ public class HubThat extends JavaPlugin
 
         // Initialize command classes.
         debugger.sendDebugMessage(Level.INFO, "Loading classes...");
+
         FileUtils fileUtilsInstance = new FileUtils(this);
+        // todo: ^ this is bad, utils should not be instantiated.
+
         HubThatCommand hubThatCommandInstance = new HubThatCommand(this);
         HubCommand hubCommandInstance = new HubCommand(this);
         SpawnCommand spawnCommandInstance = new SpawnCommand(this);

@@ -87,8 +87,7 @@ public class UpdateChecker implements Runnable
 
         } catch (IOException e)
         {
-
-            setAndSendErrorCode("null json", console);
+            setAndSendErrorCode(e.getMessage(), console);
             return;
         }
 
@@ -97,11 +96,10 @@ public class UpdateChecker implements Runnable
         JsonObject json = (JsonObject)jsonParser.parse(new InputStreamReader(jsonIS, StandardCharsets.UTF_8));
 
         // Close the input stream...
-        /*try {
+        try {
             jsonIS.close();
         } catch (IOException ignored)
-        {
-        }*/
+        {}
 
         // Check if the "version" String is present...
         newVersion = null;
