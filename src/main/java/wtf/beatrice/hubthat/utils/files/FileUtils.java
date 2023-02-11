@@ -69,6 +69,10 @@ public class FileUtils
 
             UpdateChecker.task = plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, plugin.updateChecker, 1, 20 * 60 * 60 * 12); // 12 hours
         }
+        else
+        {
+            PluginCache.updateChecker = false;
+        }
 
         PluginCache.invisibilityFix = config.getBoolean(ConfigEntries.INVISIBILITY_FIX.path);
         PluginCache.sendJoinTpMessage = config.getBoolean(ConfigEntries.TELEPORTATION_TP_MESSAGE_ON_JOIN.path);

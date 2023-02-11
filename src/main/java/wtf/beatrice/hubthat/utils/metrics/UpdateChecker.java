@@ -181,7 +181,6 @@ public class UpdateChecker implements Runnable
 
     }
 
-
     public void sendUnreachableCode(CommandSender sender)
     {
         String pluginName = plugin.getName();
@@ -248,7 +247,8 @@ public class UpdateChecker implements Runnable
                     }
 
                     if(isServerUnreachable)
-                    {sendUnreachableCode(player);
+                    {
+                        sendUnreachableCode(player);
                     }
 
                     if(errorCode != null)
