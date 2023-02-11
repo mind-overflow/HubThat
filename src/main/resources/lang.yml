@@ -1,6 +1,6 @@
 error:
   console-access-blocked: '&cSorry, but this command is not available via console.'
-  already-teleporting: '&cYou are already in the teleportation queue!'
+  already-teleporting: '&cYou are already being teleported!'
   hub-not-set: '&cThe hub is not set.'
   spawn-not-set: '&cThe spawn is not set.'
   unknown-world: '&cError: world "%w%" does not exist!'
