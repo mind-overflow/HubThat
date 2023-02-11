@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public class PluginCache
 {
-
-
     public static ArrayList<String> teleporting = new ArrayList<>();
     public static ArrayList<String>cancelRunnable = new ArrayList<>();
 
@@ -17,6 +15,6 @@ public class PluginCache
     public static boolean sendJoinTpMessage = true;
     public static final ItemStack AIR = new ItemStack(Material.AIR, 1);
 
-    public static final double minSupportedVersion = 1.7;
-    public static final double maxSupportedVersion = 1.16;
+    public static final String minSupportedVersion = "1.7";
+    public static final String maxSupportedVersion = "1.20";
 }
