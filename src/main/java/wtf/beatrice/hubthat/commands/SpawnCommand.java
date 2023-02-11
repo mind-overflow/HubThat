@@ -42,7 +42,7 @@ public class SpawnCommand  implements CommandExecutor
         boolean senderIsConsole = (commandSender instanceof ConsoleCommandSender);
         if(senderIsConsole)
         {
-            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.ERROR_CONSOLE_ACCESS_BLOCKED);
+            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.ERROR_CONSOLE_ACCESS_BLOCKED);
             return true;
         }
 
@@ -56,14 +56,14 @@ public class SpawnCommand  implements CommandExecutor
                 Player teleportPlayer = plugin.getServer().getPlayer(teleportingPlayerName);
                 if(teleportPlayer == null)
                 {
-                    String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_PLAYER_OFFLINE, true).replace("%player%", teleportingPlayerName);
+                    String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.ERROR_PLAYER_OFFLINE, true).replace("%player%", teleportingPlayerName);
                     commandSender.sendMessage(errorMessage);
                     return true;
                 }
 
                 if(plugin.getServer().getWorld(worldName) == null)
                 {
-                    MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.ERROR_SPAWN_NOT_SET);
+                    MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.ERROR_SPAWN_NOT_SET);
                     return true;
                 }
 
@@ -73,7 +73,7 @@ public class SpawnCommand  implements CommandExecutor
             else
             {
                 // Warn the player he doesn't have permissions to teleport others to the hub.
-                String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.SPAWN_TELEPORT_OTHERS.permission);
+                String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.SPAWN_TELEPORT_OTHERS.permission);
                 commandSender.sendMessage(errorMessage);
                 return true;
             }
@@ -103,14 +103,14 @@ public class SpawnCommand  implements CommandExecutor
                         if(!PermissionUtils.playerHasPermission(commandSender, Permissions.SPAWN_TELEPORT_ANOTHER_WORLD))
                         {
                             // Tell the player he has no permission to teleport to another world's spawn.
-                            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.SPAWN_TELEPORT_ANOTHER_WORLD.permission);
+                            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.SPAWN_TELEPORT_ANOTHER_WORLD.permission);
                             commandSender.sendMessage(errorMessage);
                             return true;
                         }
 
                         if(plugin.getServer().getWorld(args[0]) == null)
                         {
-                            String erroMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_WORLD_NOT_EXISTING, true).replace("%w%", args[0]);
+                            String erroMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.ERROR_WORLD_NOT_EXISTING, true).replace("%w%", args[0]);
                             commandSender.sendMessage(erroMessage);
                             return true;
                         }
@@ -121,7 +121,7 @@ public class SpawnCommand  implements CommandExecutor
                     int delay = FileUtils.FileType.CONFIG_YAML.yaml.getInt(ConfigEntries.SPAWN_DELAY.path);
 
                     // Warn the player about the delay.
-                    String delayMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_TELEPORT_DELAY, false);
+                    String delayMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.INFO_TELEPORT_DELAY, false);
                     delayMessage = delayMessage.replace("%delay%", delay + "");
                     MessageUtils.sendColorizedMessage(commandSender, delayMessage);
 
@@ -146,7 +146,7 @@ public class SpawnCommand  implements CommandExecutor
                 else
                 {
                     // Send a message to the player stating it, and do nothing.
-                    MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.ERROR_ALREADY_TELEPORTING);
+                    MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.ERROR_ALREADY_TELEPORTING);
                     return true;
                 }
             }
@@ -154,7 +154,7 @@ public class SpawnCommand  implements CommandExecutor
         else
         {
             // Warn the player he doesn't have permissions to go to the spawn.
-            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.SPAWN_TELEPORT.permission);
+            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.SPAWN_TELEPORT.permission);
             commandSender.sendMessage(errorMessage);
         }
 

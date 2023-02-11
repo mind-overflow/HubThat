@@ -2,7 +2,7 @@ package wtf.beatrice.hubthat.utils.files;
 
 import wtf.beatrice.hubthat.HubThat;
 import wtf.beatrice.hubthat.utils.ConfigEntries;
-import wtf.beatrice.hubthat.utils.LocalizedMessages;
+import wtf.beatrice.hubthat.utils.LocalizedMessage;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -62,18 +62,18 @@ public class OldConfigConversion
         logger.warning("Done with config.yml!");
 
         logger.warning("Loading lang entries...");
-        HashMap<LocalizedMessages, String>newAndOldLangEntries = new HashMap<>();
-        newAndOldLangEntries.put(LocalizedMessages.ERROR_ALREADY_TELEPORTING, "global.ALREADY-TELEPORTING");
-        newAndOldLangEntries.put(LocalizedMessages.ERROR_HUB_NOT_SET, "hub.HUB_NOT_SET");
-        newAndOldLangEntries.put(LocalizedMessages.ERROR_SPAWN_NOT_SET, "spawn.SPAWN_NOT_SET");
-        newAndOldLangEntries.put(LocalizedMessages.ERROR_WORLD_NOT_EXISTING, "worldtp.UNKNOWN_WORLD");
-        newAndOldLangEntries.put(LocalizedMessages.WARNING_TELEPORTATION_CANCELLED, "global.MOVED");
-        newAndOldLangEntries.put(LocalizedMessages.INFO_HUB_TELEPORTED, "hub.TELEPORTED");
-        newAndOldLangEntries.put(LocalizedMessages.INFO_SPAWN_TELEPORTED, "spawn.TELEPORTED");
-        newAndOldLangEntries.put(LocalizedMessages.INFO_WORLDTP_TELEPORTED, "worldtp.TELEPORTED");
+        HashMap<LocalizedMessage, String>newAndOldLangEntries = new HashMap<>();
+        newAndOldLangEntries.put(LocalizedMessage.ERROR_ALREADY_TELEPORTING, "global.ALREADY-TELEPORTING");
+        newAndOldLangEntries.put(LocalizedMessage.ERROR_HUB_NOT_SET, "hub.HUB_NOT_SET");
+        newAndOldLangEntries.put(LocalizedMessage.ERROR_SPAWN_NOT_SET, "spawn.SPAWN_NOT_SET");
+        newAndOldLangEntries.put(LocalizedMessage.ERROR_WORLD_NOT_EXISTING, "worldtp.UNKNOWN_WORLD");
+        newAndOldLangEntries.put(LocalizedMessage.WARNING_TELEPORTATION_CANCELLED, "global.MOVED");
+        newAndOldLangEntries.put(LocalizedMessage.INFO_HUB_TELEPORTED, "hub.TELEPORTED");
+        newAndOldLangEntries.put(LocalizedMessage.INFO_SPAWN_TELEPORTED, "spawn.TELEPORTED");
+        newAndOldLangEntries.put(LocalizedMessage.INFO_WORLDTP_TELEPORTED, "worldtp.TELEPORTED");
 
         logger.warning("Converting lang entries...");
-        for(LocalizedMessages message : newAndOldLangEntries.keySet())
+        for(LocalizedMessage message : newAndOldLangEntries.keySet())
         {
             logger.warning("Entry: " + message.path);
             FileUtils.FileType.LANG_YAML.yaml.set(message.path, oldConfig.get(newAndOldLangEntries.get(message)));

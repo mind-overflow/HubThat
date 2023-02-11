@@ -28,7 +28,7 @@ public class ReloadCommand
         }
         else
         {
-            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.RELOAD_CONFIG.permission);
+            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.RELOAD_CONFIG.permission);
             commandSender.sendMessage(errorMessage);
         }
 

@@ -40,7 +40,7 @@ public class WorldTpCommand implements CommandExecutor
         boolean senderIsConsole = (commandSender instanceof ConsoleCommandSender);
         if(senderIsConsole)
         {
-            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.ERROR_CONSOLE_ACCESS_BLOCKED);
+            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.ERROR_CONSOLE_ACCESS_BLOCKED);
             return true;
         }
 
@@ -51,7 +51,7 @@ public class WorldTpCommand implements CommandExecutor
             if(args.length != 1)
             {
                 // Warn the player in case it's wrong.
-                String wrongUsageMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_WRONG_USAGE, false).replace("%usage%", "/worldtp <world>");
+                String wrongUsageMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.ERROR_WRONG_USAGE, false).replace("%usage%", "/worldtp <world>");
                 MessageUtils.sendColorizedMessage(commandSender, wrongUsageMessage);
                 return true;
             }
@@ -62,7 +62,7 @@ public class WorldTpCommand implements CommandExecutor
             // If the world does not exist, warn the player.
             if(destinationWorld == null)
             {
-                String worldDoesNotExistMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_WORLD_NOT_EXISTING, false);
+                String worldDoesNotExistMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.ERROR_WORLD_NOT_EXISTING, false);
                 worldDoesNotExistMessage = worldDoesNotExistMessage.replace("%w%", destinationWorldName);
                 MessageUtils.sendColorizedMessage(commandSender, worldDoesNotExistMessage);
                 return true;
@@ -77,7 +77,7 @@ public class WorldTpCommand implements CommandExecutor
             plugin.getServer().getScheduler().runTaskLater(plugin, () -> player.teleport(destinationLocation), 1);
             fixInvisibilityAfter(player);
             // Tell the player he has been teleported.
-            String teleportedMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_WORLDTP_TELEPORTED, false);
+            String teleportedMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.INFO_WORLDTP_TELEPORTED, false);
             teleportedMessage = teleportedMessage.replace("%world%", destinationWorldName).replace("%w%", destinationWorldName);
             MessageUtils.sendColorizedMessage(commandSender, teleportedMessage);
         }

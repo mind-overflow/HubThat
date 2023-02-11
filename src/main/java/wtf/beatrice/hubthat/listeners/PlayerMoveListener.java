@@ -2,7 +2,7 @@ package wtf.beatrice.hubthat.listeners;
 
 import wtf.beatrice.hubthat.utils.PluginCache;
 import wtf.beatrice.hubthat.utils.ConfigEntries;
-import wtf.beatrice.hubthat.utils.LocalizedMessages;
+import wtf.beatrice.hubthat.utils.LocalizedMessage;
 import wtf.beatrice.hubthat.utils.MessageUtils;
 import wtf.beatrice.hubthat.utils.files.FileUtils;
 import org.bukkit.event.EventHandler;
@@ -33,7 +33,7 @@ public class PlayerMoveListener implements Listener
                     // Remove the player from the list and warn him.
                     PluginCache.teleporting.remove(playerName);
                     PluginCache.cancelRunnable.add(playerName);
-                    MessageUtils.sendLocalizedMessage(event.getPlayer(), LocalizedMessages.WARNING_TELEPORTATION_CANCELLED);
+                    MessageUtils.sendLocalizedMessage(event.getPlayer(), LocalizedMessage.WARNING_TELEPORTATION_CANCELLED);
                 }
             }
         }

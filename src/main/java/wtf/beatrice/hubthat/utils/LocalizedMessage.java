@@ -1,6 +1,6 @@
 package wtf.beatrice.hubthat.utils;
 
-public enum LocalizedMessages
+public enum LocalizedMessage
 {
 
 
@@ -49,7 +49,7 @@ public enum LocalizedMessages
 
     public String path;
 
-    LocalizedMessages(String path)
+    LocalizedMessage(String path)
     {
         this.path = path;
     }

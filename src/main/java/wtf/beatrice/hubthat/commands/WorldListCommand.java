@@ -36,7 +36,7 @@ public class WorldListCommand implements CommandExecutor
         if(PermissionUtils.playerHasPermission(commandSender, Permissions.WORLD_LIST))
         {
             // send the translated title.
-            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.INFO_WORLDS_LIST);
+            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.INFO_WORLDS_LIST);
             MessageUtils.sendColorizedMessage(commandSender, "&7---------");
 
 
@@ -77,7 +77,7 @@ public class WorldListCommand implements CommandExecutor
         else // If player doesn't have permissions...
         {
             // Tell him.
-            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.WORLD_LIST.permission);
+            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.WORLD_LIST.permission);
             commandSender.sendMessage(errorMessage);
         }
         return true;

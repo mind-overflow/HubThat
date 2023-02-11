@@ -88,12 +88,12 @@ public class TeleportUtils
             if(type == FileUtils.FileType.HUB_YAML)
             {
                 // send a message about the hub being not set
-                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_HUB_NOT_SET);
+                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessage.ERROR_HUB_NOT_SET);
             }
             else if(type == FileUtils.FileType.SPAWN_YAML)
             {
                 // send a message about the spawn being not set.
-                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_SPAWN_NOT_SET);
+                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessage.ERROR_SPAWN_NOT_SET);
             }
             else
             {
@@ -109,7 +109,7 @@ public class TeleportUtils
             if(worldName.equals("__UNSET__") && type == FileUtils.FileType.HUB_YAML)
             {
                 // Warn the player about the hub not being set.
-                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessages.ERROR_HUB_NOT_SET);
+                if(sendMessage) MessageUtils.sendLocalizedMessage(sender, LocalizedMessage.ERROR_HUB_NOT_SET);
                 // Stop.
                 return;
             }
@@ -122,7 +122,7 @@ public class TeleportUtils
             // Tell the player that the world does not exist.
             if(sendMessage)
             {
-                String errorWorldNotExistingMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_WORLD_NOT_EXISTING, false);
+                String errorWorldNotExistingMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.ERROR_WORLD_NOT_EXISTING, false);
                 errorWorldNotExistingMessage = errorWorldNotExistingMessage.replace("%w%", worldName);
                 MessageUtils.sendColorizedMessage(player, errorWorldNotExistingMessage);
             }
@@ -143,21 +143,21 @@ public class TeleportUtils
         if(type == FileUtils.FileType.HUB_YAML)
         {
             // Send a message to the player about him being successfully teleported.
-            if(sendMessage) MessageUtils.sendLocalizedMessage(player, LocalizedMessages.INFO_HUB_TELEPORTED);
+            if(sendMessage) MessageUtils.sendLocalizedMessage(player, LocalizedMessage.INFO_HUB_TELEPORTED);
 
             if((sender != player) && (sendMessage))
             {
-                String message = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_HUB_TELEPORTED_OTHER, true).replace("%player%", player.getName());
+                String message = MessageUtils.getLocalizedMessage(LocalizedMessage.INFO_HUB_TELEPORTED_OTHER, true).replace("%player%", player.getName());
                 sender.sendMessage(message);
             }
         }
         else //if(type == FileUtils.FileType.SPAWN_YAML) // left here but commented, for easy understanding
         {
-            if(sendMessage) MessageUtils.sendLocalizedMessage(player, LocalizedMessages.INFO_SPAWN_TELEPORTED);
+            if(sendMessage) MessageUtils.sendLocalizedMessage(player, LocalizedMessage.INFO_SPAWN_TELEPORTED);
 
             if((sender != player) && (sendMessage))
             {
-                String message = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_SPAWN_TELEPORTED_OTHER, true).replace("%player%", player.getName()).replace("%world%", worldName);
+                String message = MessageUtils.getLocalizedMessage(LocalizedMessage.INFO_SPAWN_TELEPORTED_OTHER, true).replace("%player%", player.getName()).replace("%world%", worldName);
                 sender.sendMessage(message);
             }
         }

@@ -41,7 +41,7 @@ public class HubCommand  implements CommandExecutor
                 Player teleportingPlayer = plugin.getServer().getPlayer(teleportingPlayerName);
                 if(teleportingPlayer == null)
                 {
-                    String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_PLAYER_OFFLINE, true).replace("%player%", teleportingPlayerName);
+                    String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.ERROR_PLAYER_OFFLINE, true).replace("%player%", teleportingPlayerName);
                     commandSender.sendMessage(errorMessage);
                     return true;
                 }
@@ -54,7 +54,7 @@ public class HubCommand  implements CommandExecutor
             else
             {
                 // Warn the player he doesn't have permissions to teleport others to the hub.
-                String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.HUB_TELEPORT_OTHERS.permission);
+                String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.HUB_TELEPORT_OTHERS.permission);
                 commandSender.sendMessage(errorMessage);
                 return true;
             }
@@ -65,7 +65,7 @@ public class HubCommand  implements CommandExecutor
         boolean senderIsConsole = !(commandSender instanceof Player);
         if(senderIsConsole)
         {
-            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.ERROR_CONSOLE_ACCESS_BLOCKED);
+            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.ERROR_CONSOLE_ACCESS_BLOCKED);
             return true;
         }
 
@@ -94,7 +94,7 @@ public class HubCommand  implements CommandExecutor
 
 
                     // Warn the player about the delay.
-                    String delayMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_TELEPORT_DELAY, false);
+                    String delayMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.INFO_TELEPORT_DELAY, false);
                     delayMessage = delayMessage.replace("%delay%", delay + "");
                     MessageUtils.sendColorizedMessage(commandSender, delayMessage);
 
@@ -118,7 +118,7 @@ public class HubCommand  implements CommandExecutor
                 else
                 {
                     // Send a message to the player stating it, and do nothing.
-                    MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.ERROR_ALREADY_TELEPORTING);
+                    MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.ERROR_ALREADY_TELEPORTING);
                     return true;
                 }
             }
@@ -126,7 +126,7 @@ public class HubCommand  implements CommandExecutor
         else
         {
             // Warn the player he doesn't have permissions to go to the hub.
-            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.HUB_TELEPORT.permission);
+            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.HUB_TELEPORT.permission);
             commandSender.sendMessage(errorMessage);
             return true;
         }

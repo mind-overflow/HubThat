@@ -29,7 +29,7 @@ public class SetHubCommand implements CommandExecutor
         boolean senderIsConsole = (commandSender instanceof ConsoleCommandSender);
         if(senderIsConsole)
         {
-            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.ERROR_CONSOLE_ACCESS_BLOCKED);
+            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.ERROR_CONSOLE_ACCESS_BLOCKED);
             return true;
         }
 
@@ -61,7 +61,7 @@ public class SetHubCommand implements CommandExecutor
             FileUtils.saveExistingYaml(FileUtils.FileType.HUB_YAML);
 
             // Tell the player he set the hub successfully.
-            String hubSetMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_HUB_SET, false);
+            String hubSetMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.INFO_HUB_SET, false);
             hubSetMessage = hubSetMessage.replace("%w%", worldName);
             hubSetMessage = hubSetMessage.replace("%x%", (int)x + "");
             hubSetMessage = hubSetMessage.replace("%y%", (int)y + "");
@@ -70,7 +70,7 @@ public class SetHubCommand implements CommandExecutor
         }
         else
         {
-            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.HUB_SET.permission);
+            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.HUB_SET.permission);
             commandSender.sendMessage(errorMessage);
         }
         return true;

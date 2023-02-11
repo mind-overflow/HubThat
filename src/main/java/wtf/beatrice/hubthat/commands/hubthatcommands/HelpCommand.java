@@ -1,6 +1,6 @@
 package wtf.beatrice.hubthat.commands.hubthatcommands;
 
-import wtf.beatrice.hubthat.utils.LocalizedMessages;
+import wtf.beatrice.hubthat.utils.LocalizedMessage;
 import wtf.beatrice.hubthat.utils.MessageUtils;
 import wtf.beatrice.hubthat.utils.PermissionUtils;
 import wtf.beatrice.hubthat.utils.Permissions;
@@ -13,7 +13,7 @@ public class HelpCommand
     {
         if(!PermissionUtils.playerHasPermission(commandSender, Permissions.HELP_MESSAGE))
         {
-            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.HELP_MESSAGE.permission);
+            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.HELP_MESSAGE.permission);
             commandSender.sendMessage(errorMessage);
             return;
         }

@@ -14,7 +14,7 @@ public class MessageUtils
     private static final Debugger debugger = new Debugger(MessageUtils.class.getName());
 
     // Method to automatically load and send a localized message to the CommandSender.
-    public static void sendLocalizedMessage(CommandSender sender, LocalizedMessages messageEnum)
+    public static void sendLocalizedMessage(CommandSender sender, LocalizedMessage messageEnum)
     {
         // If we actually have a sender, send it the message and color it!
         if(sender != null) sender.sendMessage(getLocalizedMessage(messageEnum, true));
@@ -32,7 +32,7 @@ public class MessageUtils
         else debugger.sendDebugMessage(Level.SEVERE, "Sender is null!");
     }
 
-    public static String getLocalizedMessage(LocalizedMessages messageEnum, boolean applyColor)
+    public static String getLocalizedMessage(LocalizedMessage messageEnum, boolean applyColor)
     {
 
         /*
@@ -47,7 +47,7 @@ public class MessageUtils
         YamlConfiguration langFile = FileUtils.FileType.LANG_YAML.yaml;
 
         // Initialize the message string and store the String from the lang file to it.
-        String localizedMessage = langFile.getString(LocalizedMessages.INFO_PREFIX.path) + langFile.getString(path);
+        String localizedMessage = langFile.getString(LocalizedMessage.INFO_PREFIX.path) + langFile.getString(path);
 
         // Check if the message is null and if we have to color the message or leave the symbols inside for further elaboration.
         if (localizedMessage != null)

@@ -41,7 +41,7 @@ public class SetSpawnCommand implements CommandExecutor
         boolean senderIsConsole = (commandSender instanceof ConsoleCommandSender);
         if(senderIsConsole)
         {
-            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessages.ERROR_CONSOLE_ACCESS_BLOCKED);
+            MessageUtils.sendLocalizedMessage(commandSender, LocalizedMessage.ERROR_CONSOLE_ACCESS_BLOCKED);
             return true;
         }
 
@@ -83,7 +83,7 @@ public class SetSpawnCommand implements CommandExecutor
             {
                 // Warn the player and stop.
                 // Tell the player that the world does not exist.
-                String errorWorldNotExistingMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.ERROR_WORLD_NOT_EXISTING, false);
+                String errorWorldNotExistingMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.ERROR_WORLD_NOT_EXISTING, false);
                 errorWorldNotExistingMessage = errorWorldNotExistingMessage.replace("%w%", worldYouAreSettingTheSpawnOf);
                 MessageUtils.sendColorizedMessage(commandSender, errorWorldNotExistingMessage);
                 return true;
@@ -104,7 +104,7 @@ public class SetSpawnCommand implements CommandExecutor
             FileUtils.saveExistingYaml(FileUtils.FileType.SPAWN_YAML);
 
             // Tell the player he set the spawn successfully.
-            String spawnSetMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.INFO_SPAWN_SET, false)
+            String spawnSetMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.INFO_SPAWN_SET, false)
             .replace("%dw%", worldYouAreSettingTheSpawnOf)
             .replace("%cw%", currentWorldName)
             .replace("%x%", (int)x + "")
@@ -115,7 +115,7 @@ public class SetSpawnCommand implements CommandExecutor
         }
         else
         {
-            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessages.NO_PERMISSION, true).replace("%permission%", Permissions.SPAWN_SET.permission);
+            String errorMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.NO_PERMISSION, true).replace("%permission%", Permissions.SPAWN_SET.permission);
             commandSender.sendMessage(errorMessage);
         }
 
