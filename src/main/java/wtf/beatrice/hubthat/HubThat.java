@@ -42,17 +42,18 @@ public class HubThat extends JavaPlugin
     public void onEnable()
     {
 
-        // Give the initialized variables their respective values. Absolutely don't do this before as they will look good in the IDE but will result null.
+        // Initialize the variables with their respective values.
+        // Don't do this in the constructor as they will result null.
         logger = getLogger();
         pluginManager = getServer().getPluginManager();
 
-        // Check and report if the Debugger is enabled (the method itself does the checking). Would do it before but we need the logger to be initialized! :(
+        // If debugging is enabled, this will be printed.
         debugger.sendDebugMessage(Level.WARNING, "---[ DEBUGGER IS ENABLED! ]---");
         debugger.sendDebugMessage(Level.WARNING, "---[ INITIALIZING PLUGIN ]---");
-        debugger.sendDebugMessage(Level.INFO, "Logger and PluginManager already initialized.");
+        debugger.sendDebugMessage(Level.INFO, "Logger and PluginManager initialized.");
 
-        // Register instances and give them the plugin parameter (this, because this class is the JavaPlugin) so they can access all of its info.
-        debugger.sendDebugMessage(Level.INFO, "Instantiating some classes that need to access to plugin data...");
+        // Initialize command classes.
+        debugger.sendDebugMessage(Level.INFO, "Loading classes...");
         FileUtils fileUtilsInstance = new FileUtils(this);
         HubThatCommand hubThatCommandInstance = new HubThatCommand(this);
         HubCommand hubCommandInstance = new HubCommand(this);
@@ -61,11 +62,11 @@ public class HubThat extends JavaPlugin
         WorldListCommand worldListCommandInstance = new WorldListCommand(this);
         WorldTpCommand worldTpCommandInstance = new WorldTpCommand(this);
 
-        // We need to instantiate Utils classes because they need to access plugin data and server.
+        // We need to instantiate Utils classes because they need to access the plugin instance.
+        // todo: this is bad, utils should not be instantiated.
         TeleportUtils teleportUtilsInstance = new TeleportUtils(this);
-        UpdateChecker updateCheckerInstance = new UpdateChecker(this);
         updateChecker = new UpdateChecker(this);
-        debugger.sendDebugMessage(Level.INFO, "Done instantiating classes!");
+        debugger.sendDebugMessage(Level.INFO, "Classes loaded!");
 
         // Register Listeners
         debugger.sendDebugMessage(Level.INFO, "Registering listeners...");
@@ -75,7 +76,7 @@ public class HubThat extends JavaPlugin
         pluginManager.registerEvents(new PlayerRespawnListener(this), this);
 
 
-        debugger.sendDebugMessage(Level.INFO, "Done registering listeners!");
+        debugger.sendDebugMessage(Level.INFO, "Listeners registered!");
 
         // Register Commands
         debugger.sendDebugMessage(Level.INFO, "Registering commands...");
@@ -98,11 +99,11 @@ public class HubThat extends JavaPlugin
         getCommand("worldtp").setExecutor(worldTpCommandInstance);
         getCommand("worldtp").setTabCompleter(new SpawnCompleter());
 
-        debugger.sendDebugMessage(Level.INFO, "Done registering commands!");
+        debugger.sendDebugMessage(Level.INFO, "Commands registered!");
 
-        OldConfigConversion.checkOldConfig(this, logger);
         // Check if all needed files exist and work correctly, also loading their YAMLs.
         debugger.sendDebugMessage(Level.INFO, "Checking files...");
+        OldConfigConversion.checkOldConfig(this, logger);
         FileUtils.checkFiles();
         debugger.sendDebugMessage(Level.INFO, "Done checking files!");
 
@@ -110,16 +111,16 @@ public class HubThat extends JavaPlugin
         Load all the YAML files. We are already loading them in FileUtils's checkFiles() method but we are loading them singularly.
         With this method we are sure that all the files get successfully loaded. Better twice than never...
          */
-        debugger.sendDebugMessage(Level.INFO, "Reloading YAML config...");
+        debugger.sendDebugMessage(Level.INFO, "Loading configuration...");
         FileUtils.reloadYamls();
-        debugger.sendDebugMessage(Level.INFO, "Done!");
+        debugger.sendDebugMessage(Level.INFO, "Configuration loaded!");
 
         debugger.sendDebugMessage(Level.INFO, "Setting up Metrics...");
         setupMetrics();
         debugger.sendDebugMessage(Level.INFO, "Done setting up Metrics!");
 
         // Send success output message to console.
-        logger.log(Level.INFO, "Plugin " + getDescription().getName() + " Successfully Loaded!");
+        logger.log(Level.INFO, getDescription().getName() + " successfully loaded!");
         debugger.sendDebugMessage(Level.WARNING, "---[ INITIALIZATION DONE ]---");
 
     }
@@ -131,13 +132,12 @@ public class HubThat extends JavaPlugin
         debugger.sendDebugMessage(Level.WARNING, "---[ DEBUGGER IS ENABLED! ]---");
         debugger.sendDebugMessage(Level.WARNING, "---[ DISABLING PLUGIN ]---");
         getServer().getScheduler().cancelTasks(this);
-        logger.log(Level.INFO, "Plugin " + getDescription().getName() + " Successfully Unloaded!");
+        logger.log(Level.INFO, getDescription().getName() + " unloaded!");
         debugger.sendDebugMessage(Level.WARNING, "---[ PLUGIN DISABLED ]---");
     }
 
     private void setupMetrics()
     {
-
         Metrics metrics = new Metrics(this);
 
         YamlConfiguration config = FileUtils.FileType.CONFIG_YAML.yaml;
