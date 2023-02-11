@@ -90,7 +90,7 @@ public class HubCommand  implements CommandExecutor
                     // Put the player in the ArrayList of players waiting to be teleported.
                     PluginCache.teleporting.add(username);
                     // Load the teleportation delay.
-                    int delay = FileUtils.FileType.CONFIG_YAML.yaml.getInt(ConfigEntries.HUB_DELAY.path);
+                    int delay = FileUtils.FileType.CONFIG_YAML.yaml.getInt(ConfigEntry.HUB_DELAY.path);
 
 
                     // Warn the player about the delay.

@@ -3,7 +3,7 @@ package wtf.beatrice.hubthat.listeners;
 import wtf.beatrice.hubthat.HubThat;
 import wtf.beatrice.hubthat.commands.HubCommand;
 import wtf.beatrice.hubthat.commands.SpawnCommand;
-import wtf.beatrice.hubthat.utils.ConfigEntries;
+import wtf.beatrice.hubthat.utils.ConfigEntry;
 import wtf.beatrice.hubthat.utils.files.FileUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -31,7 +31,7 @@ public class PlayerRespawnListener implements Listener
 
 
 
-        if(configYaml.getBoolean(ConfigEntries.MULTIVERSE_BYPASS.path))
+        if(configYaml.getBoolean(ConfigEntry.MULTIVERSE_BYPASS.path))
         {
             plugin.getServer().getScheduler().runTaskLater(plugin, ()->  tpPlayer(event.getPlayer(), configYaml), 5L);
 
@@ -48,11 +48,11 @@ public class PlayerRespawnListener implements Listener
     private void tpPlayer(Player player, YamlConfiguration configYaml)
     {
         // Check if the respawn handler is enabled in config.
-        if(configYaml.getBoolean(ConfigEntries.TELEPORTATION_RESPAWN_HANDLER.path))
+        if(configYaml.getBoolean(ConfigEntry.TELEPORTATION_RESPAWN_HANDLER.path))
         {
 
             // Check if the player has to be teleported to Hub on respawn.
-            if(configYaml.getBoolean(ConfigEntries.TELEPORTATION_TP_HUB_ON_RESPAWN.path))
+            if(configYaml.getBoolean(ConfigEntry.TELEPORTATION_TP_HUB_ON_RESPAWN.path))
             {
                 HubCommand.teleportToHub(player, player);
             }

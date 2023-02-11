@@ -1,6 +1,6 @@
 package wtf.beatrice.hubthat.utils;
 
-public enum ConfigEntries
+public enum ConfigEntry
 {
     HUB_DELAY("hub.delay"),
 
@@ -33,7 +33,7 @@ public enum ConfigEntries
 
     public String path;
 
-    ConfigEntries(String path)
+    ConfigEntry(String path)
     {
         this.path = path;
     }

@@ -1,7 +1,7 @@
 package wtf.beatrice.hubthat.listeners;
 
 import wtf.beatrice.hubthat.HubThat;
-import wtf.beatrice.hubthat.utils.ConfigEntries;
+import wtf.beatrice.hubthat.utils.ConfigEntry;
 import wtf.beatrice.hubthat.utils.Debugger;
 import wtf.beatrice.hubthat.utils.files.FileUtils;
 import org.bukkit.entity.Player;
@@ -27,7 +27,7 @@ public class PlayerChatListener implements Listener
         Player messageSender = event.getPlayer();
 
         // Check if the world-related chat is enabled.
-        if(FileUtils.FileType.CONFIG_YAML.yaml.getBoolean(ConfigEntries.WORLD_RELATED_CHAT.path))
+        if(FileUtils.FileType.CONFIG_YAML.yaml.getBoolean(ConfigEntry.WORLD_RELATED_CHAT.path))
         {
 
             // Store the sender's world spawn name in a string. Fallback to "__UNSET__".

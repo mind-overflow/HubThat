@@ -7,7 +7,7 @@ import wtf.beatrice.hubthat.listeners.PlayerChatListener;
 import wtf.beatrice.hubthat.listeners.PlayerJoinListener;
 import wtf.beatrice.hubthat.listeners.PlayerMoveListener;
 import wtf.beatrice.hubthat.listeners.PlayerRespawnListener;
-import wtf.beatrice.hubthat.utils.ConfigEntries;
+import wtf.beatrice.hubthat.utils.ConfigEntry;
 import wtf.beatrice.hubthat.utils.Debugger;
 import wtf.beatrice.hubthat.utils.TeleportUtils;
 import wtf.beatrice.hubthat.utils.files.FileUtils;
@@ -141,19 +141,19 @@ public class HubThat extends JavaPlugin
         Metrics metrics = new Metrics(this);
 
         YamlConfiguration config = FileUtils.FileType.CONFIG_YAML.yaml;
-        metrics.addCustomChart(new Metrics.SimplePie("respawn-handler", () -> config.getString(ConfigEntries.TELEPORTATION_RESPAWN_HANDLER.path)));
-        metrics.addCustomChart(new Metrics.SimplePie("world-related-chat", () -> config.getString(ConfigEntries.WORLD_RELATED_CHAT.path)));
-        metrics.addCustomChart(new Metrics.SimplePie("update-notify", () -> config.getString(ConfigEntries.UPDATE_CHECKER_ENABLED.path)));
-        metrics.addCustomChart(new Metrics.SimplePie("set-gamemode-on-join", () -> config.getString(ConfigEntries.GAMEMODE_SET_ON_JOIN.path)));
-        metrics.addCustomChart(new Metrics.SimplePie("tp-hub-on-join", () -> config.getString(ConfigEntries.TELEPORTATION_TP_HUB_ON_JOIN.path)));
-        metrics.addCustomChart(new Metrics.SimplePie("tp-hub-on-respawn", () -> config.getString(ConfigEntries.TELEPORTATION_TP_HUB_ON_RESPAWN.path)));
-        metrics.addCustomChart(new Metrics.SimplePie("multiverse-bypass", () -> config.getString(ConfigEntries.MULTIVERSE_BYPASS.path)));
-        metrics.addCustomChart(new Metrics.SimplePie("send-tp-message-on-join", () -> config.getString(ConfigEntries.TELEPORTATION_TP_MESSAGE_ON_JOIN.path)));
-        metrics.addCustomChart(new Metrics.SimplePie("fix-invisible-after-tp", () -> config.getString(ConfigEntries.INVISIBILITY_FIX.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("respawn-handler", () -> config.getString(ConfigEntry.TELEPORTATION_RESPAWN_HANDLER.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("world-related-chat", () -> config.getString(ConfigEntry.WORLD_RELATED_CHAT.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("update-notify", () -> config.getString(ConfigEntry.UPDATE_CHECKER_ENABLED.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("set-gamemode-on-join", () -> config.getString(ConfigEntry.GAMEMODE_SET_ON_JOIN.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("tp-hub-on-join", () -> config.getString(ConfigEntry.TELEPORTATION_TP_HUB_ON_JOIN.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("tp-hub-on-respawn", () -> config.getString(ConfigEntry.TELEPORTATION_TP_HUB_ON_RESPAWN.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("multiverse-bypass", () -> config.getString(ConfigEntry.MULTIVERSE_BYPASS.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("send-tp-message-on-join", () -> config.getString(ConfigEntry.TELEPORTATION_TP_MESSAGE_ON_JOIN.path)));
+        metrics.addCustomChart(new Metrics.SimplePie("fix-invisible-after-tp", () -> config.getString(ConfigEntry.INVISIBILITY_FIX.path)));
 
-        if (config.getBoolean(ConfigEntries.GAMEMODE_SET_ON_JOIN.path))
+        if (config.getBoolean(ConfigEntry.GAMEMODE_SET_ON_JOIN.path))
         {
-            metrics.addCustomChart(new Metrics.SimplePie("join-gamemode", () -> config.getString(ConfigEntries.GAMEMODE.path)));
+            metrics.addCustomChart(new Metrics.SimplePie("join-gamemode", () -> config.getString(ConfigEntry.GAMEMODE.path)));
         }
     }
 

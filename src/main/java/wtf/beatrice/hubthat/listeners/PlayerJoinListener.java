@@ -2,7 +2,7 @@ package wtf.beatrice.hubthat.listeners;
 
 import wtf.beatrice.hubthat.HubThat;
 import wtf.beatrice.hubthat.commands.HubCommand;
-import wtf.beatrice.hubthat.utils.ConfigEntries;
+import wtf.beatrice.hubthat.utils.ConfigEntry;
 import wtf.beatrice.hubthat.utils.Debugger;
 import wtf.beatrice.hubthat.utils.MessageUtils;
 import wtf.beatrice.hubthat.utils.PluginCache;
@@ -49,10 +49,10 @@ public class PlayerJoinListener implements Listener
         plugin.updateChecker.playerMessage(player);
 
         // Check if gamemode has to be set on join.
-        if(configYaml.getBoolean(ConfigEntries.GAMEMODE_SET_ON_JOIN.path))
+        if(configYaml.getBoolean(ConfigEntry.GAMEMODE_SET_ON_JOIN.path))
         {
             // Load the gamemode int from config.
-            int gamemodeInt = configYaml.getInt(ConfigEntries.GAMEMODE.path);
+            int gamemodeInt = configYaml.getInt(ConfigEntry.GAMEMODE.path);
             GameMode gamemode;
 
             // Set the gamemode accordingly.
@@ -72,7 +72,7 @@ public class PlayerJoinListener implements Listener
                     break;
             }
 
-            if(configYaml.getBoolean(ConfigEntries.MULTIVERSE_BYPASS.path))
+            if(configYaml.getBoolean(ConfigEntry.MULTIVERSE_BYPASS.path))
             {
                 plugin.getServer().getScheduler().runTaskLater(plugin, ()-> player.setGameMode(gamemode), 10L);
             }
@@ -83,10 +83,10 @@ public class PlayerJoinListener implements Listener
         }
 
         // Check if we have to teleport the player to the Hub on join.
-        if(configYaml.getBoolean(ConfigEntries.TELEPORTATION_TP_HUB_ON_JOIN.path))
+        if(configYaml.getBoolean(ConfigEntry.TELEPORTATION_TP_HUB_ON_JOIN.path))
         {
 
-            if(configYaml.getBoolean(ConfigEntries.MULTIVERSE_BYPASS.path))
+            if(configYaml.getBoolean(ConfigEntry.MULTIVERSE_BYPASS.path))
             {
                 plugin.getServer().getScheduler().runTaskLater(plugin, ()-> HubCommand.teleportToHub(player, player, PluginCache.sendJoinTpMessage), 10L);
             }

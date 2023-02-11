@@ -1,7 +1,7 @@
 package wtf.beatrice.hubthat.listeners;
 
 import wtf.beatrice.hubthat.utils.PluginCache;
-import wtf.beatrice.hubthat.utils.ConfigEntries;
+import wtf.beatrice.hubthat.utils.ConfigEntry;
 import wtf.beatrice.hubthat.utils.LocalizedMessage;
 import wtf.beatrice.hubthat.utils.MessageUtils;
 import wtf.beatrice.hubthat.utils.files.FileUtils;
@@ -17,7 +17,7 @@ public class PlayerMoveListener implements Listener
     {
 
         // Check if the movement detection is enabled.
-        if(FileUtils.FileType.CONFIG_YAML.yaml.getBoolean(ConfigEntries.MOVEMENT_DETECTION_ENABLED.path))
+        if(FileUtils.FileType.CONFIG_YAML.yaml.getBoolean(ConfigEntry.MOVEMENT_DETECTION_ENABLED.path))
         {
             // We are only going to allocate the playerName string and not the whole Player because we want efficiency.
             String playerName = event.getPlayer().getName();

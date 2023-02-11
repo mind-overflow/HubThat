@@ -2,7 +2,7 @@ package wtf.beatrice.hubthat.utils.files;
 
 import wtf.beatrice.hubthat.HubThat;
 import wtf.beatrice.hubthat.utils.PluginCache;
-import wtf.beatrice.hubthat.utils.ConfigEntries;
+import wtf.beatrice.hubthat.utils.ConfigEntry;
 import wtf.beatrice.hubthat.utils.Debugger;
 import wtf.beatrice.hubthat.utils.metrics.UpdateChecker;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -59,7 +59,7 @@ public class FileUtils
 
         YamlConfiguration config = FileType.CONFIG_YAML.yaml;
 
-        if(config.getBoolean(ConfigEntries.UPDATE_CHECKER_ENABLED.path))
+        if(config.getBoolean(ConfigEntry.UPDATE_CHECKER_ENABLED.path))
         {
             PluginCache.updateChecker = true;
             if(UpdateChecker.task != null)
@@ -74,8 +74,8 @@ public class FileUtils
             PluginCache.updateChecker = false;
         }
 
-        PluginCache.invisibilityFix = config.getBoolean(ConfigEntries.INVISIBILITY_FIX.path);
-        PluginCache.sendJoinTpMessage = config.getBoolean(ConfigEntries.TELEPORTATION_TP_MESSAGE_ON_JOIN.path);
+        PluginCache.invisibilityFix = config.getBoolean(ConfigEntry.INVISIBILITY_FIX.path);
+        PluginCache.sendJoinTpMessage = config.getBoolean(ConfigEntry.TELEPORTATION_TP_MESSAGE_ON_JOIN.path);
     }
 
     // Only reload the needed File.

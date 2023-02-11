@@ -1,7 +1,7 @@
 package wtf.beatrice.hubthat.utils.files;
 
 import wtf.beatrice.hubthat.HubThat;
-import wtf.beatrice.hubthat.utils.ConfigEntries;
+import wtf.beatrice.hubthat.utils.ConfigEntry;
 import wtf.beatrice.hubthat.utils.LocalizedMessage;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -37,21 +37,21 @@ public class OldConfigConversion
         FileUtils.checkFiles();
 
         // newPath, oldPath
-        HashMap<ConfigEntries, String>newAndOldConfigEntries = new HashMap<>();
+        HashMap<ConfigEntry, String>newAndOldConfigEntries = new HashMap<>();
         logger.warning("Loading config entries...");
-        newAndOldConfigEntries.put(ConfigEntries.HUB_DELAY, "hub.delay");
-        newAndOldConfigEntries.put(ConfigEntries.SPAWN_DELAY, "spawn.delay");
-        newAndOldConfigEntries.put(ConfigEntries.WORLD_RELATED_CHAT, "global.world-related-chat");
-        newAndOldConfigEntries.put(ConfigEntries.UPDATE_CHECKER_ENABLED, "updates.update-notify");
-        newAndOldConfigEntries.put(ConfigEntries.MOVEMENT_DETECTION_ENABLED, "global.move-detect");
-        newAndOldConfigEntries.put(ConfigEntries.GAMEMODE_SET_ON_JOIN, "global.set-gamemode-on-join");
-        newAndOldConfigEntries.put(ConfigEntries.GAMEMODE, "global.gamemode");
-        newAndOldConfigEntries.put(ConfigEntries.TELEPORTATION_TP_HUB_ON_JOIN, "global.tp-hub-on-join");
-        newAndOldConfigEntries.put(ConfigEntries.TELEPORTATION_TP_HUB_ON_RESPAWN, "global.tp-hub-on-respawn");
-        newAndOldConfigEntries.put(ConfigEntries.TELEPORTATION_RESPAWN_HANDLER, "global.respawn-handler");
+        newAndOldConfigEntries.put(ConfigEntry.HUB_DELAY, "hub.delay");
+        newAndOldConfigEntries.put(ConfigEntry.SPAWN_DELAY, "spawn.delay");
+        newAndOldConfigEntries.put(ConfigEntry.WORLD_RELATED_CHAT, "global.world-related-chat");
+        newAndOldConfigEntries.put(ConfigEntry.UPDATE_CHECKER_ENABLED, "updates.update-notify");
+        newAndOldConfigEntries.put(ConfigEntry.MOVEMENT_DETECTION_ENABLED, "global.move-detect");
+        newAndOldConfigEntries.put(ConfigEntry.GAMEMODE_SET_ON_JOIN, "global.set-gamemode-on-join");
+        newAndOldConfigEntries.put(ConfigEntry.GAMEMODE, "global.gamemode");
+        newAndOldConfigEntries.put(ConfigEntry.TELEPORTATION_TP_HUB_ON_JOIN, "global.tp-hub-on-join");
+        newAndOldConfigEntries.put(ConfigEntry.TELEPORTATION_TP_HUB_ON_RESPAWN, "global.tp-hub-on-respawn");
+        newAndOldConfigEntries.put(ConfigEntry.TELEPORTATION_RESPAWN_HANDLER, "global.respawn-handler");
 
         logger.warning("Converting config entries...");
-        for(ConfigEntries entry : newAndOldConfigEntries.keySet())
+        for(ConfigEntry entry : newAndOldConfigEntries.keySet())
         {
             logger.warning("Entry: " + entry.path);
             FileUtils.FileType.CONFIG_YAML.yaml.set(entry.path, oldConfig.get(newAndOldConfigEntries.get(entry)));

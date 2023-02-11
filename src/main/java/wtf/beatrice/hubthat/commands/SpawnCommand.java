@@ -118,7 +118,7 @@ public class SpawnCommand  implements CommandExecutor
 
 
                     // Load the teleportation delay.
-                    int delay = FileUtils.FileType.CONFIG_YAML.yaml.getInt(ConfigEntries.SPAWN_DELAY.path);
+                    int delay = FileUtils.FileType.CONFIG_YAML.yaml.getInt(ConfigEntry.SPAWN_DELAY.path);
 
                     // Warn the player about the delay.
                     String delayMessage = MessageUtils.getLocalizedMessage(LocalizedMessage.INFO_TELEPORT_DELAY, false);
