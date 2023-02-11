@@ -1,6 +1,7 @@
 # HubThat
 
-![banner](https://i.ibb.co/KNyJTMq/hubthat-new-banner.png)
+![banner](https://i.ibb.co/KNyJTMq/hubthat-new-banner.png)  
+
 *A hub for one world, a spawn for each world!*
 
 ## Project info
