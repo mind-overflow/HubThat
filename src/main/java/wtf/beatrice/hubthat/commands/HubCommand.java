@@ -13,8 +13,6 @@ import java.util.logging.Level;
 
 public class HubCommand  implements CommandExecutor
 {
-
-
     // Initialize the debugger so I can debug the plugin.
     private static final Debugger debugger = new Debugger(HubCommand.class.getName());
 
@@ -33,7 +31,6 @@ public class HubCommand  implements CommandExecutor
 
         // Store the commandSender name for easy access.
         String username = commandSender.getName();
-
 
         if(args.length > 0)
         {

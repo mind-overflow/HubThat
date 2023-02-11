@@ -36,19 +36,11 @@ public class HubThatCommand implements CommandExecutor
         // Log who is using the command.
         debugger.sendDebugMessage(Level.INFO, "Sender is instance of: " + commandSender.getClass().getName());
 
-        // If the command comes from Console, give a warning.
-        // We need no warning because this command is not player reliant.
-        /*boolean senderIsConsole = (commandSender instanceof ConsoleCommandSender);
-        if(senderIsConsole)
-        {
-            MessageUtils.sendLocalizedMessage(commandSender.getName(), LocalizedMessages.WARNING_CONSOLE_ACCESS);
-        }*/
-
         // Check if there are any args.
         if(args.length == 0)
         {
             MessageUtils.sendColorizedMessage(commandSender, "&6" + plugin.getName() +"&7 version &6" + plugin.getDescription().getVersion() + "&7 for &6SpigotMC/CraftBukkit &6" + PluginCache.minSupportedVersion + "&7-&6" + PluginCache.maxSupportedVersion + "&7.");
-            MessageUtils.sendColorizedMessage(commandSender, "&7Coded by &6" + debugger.authorName + "&7, &6GNU GPLv3&7).");
+            MessageUtils.sendColorizedMessage(commandSender, "&7Coded by &6" + debugger.authorName + "&7, &6GNU GPLv3&7.");
             commandSender.sendMessage("");
             MessageUtils.sendColorizedMessage(commandSender, "&7Write &6/"+ plugin.getName().toLowerCase() + " help&7 to see plugin commands.");
         }
